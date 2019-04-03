@@ -43,7 +43,6 @@ class StudentProfileViewSet(viewsets.ModelViewSet):
     queryset = StudentProfile.objects.all()
     serializer_class = StudentProfileSerializer
 
-
 class InstructorProfileViewSet(viewsets.ModelViewSet):
     queryset = InstructorProfile.objects.all()
     serializer_class = InstructorProfileSerializer
