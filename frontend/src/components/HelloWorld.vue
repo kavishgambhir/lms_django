@@ -133,7 +133,7 @@
           href: 'https://vuetifyjs.com/layout/pre-defined'
         },
         {
-          text: 'Frequently Asked Questions',
+          text: 'Frequently Asked Questions - test push',
           href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions'
         }
 
