@@ -5,7 +5,7 @@ from assessment.models import Quiz
 class QuizSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Quiz
-        fields = ('url', 'name', 'start_time', 'duration', 'end_time', 'is_active', 'uploaded_at')
+        fields = ('url', 'name', 'start_time', 'duration', 'end_time', 'is_active', 'uploaded_at', 'description')
         read_only_fields = ('end_time', 'is_active')
 
 
