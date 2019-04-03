@@ -5,6 +5,7 @@ from django.utils import timezone
 class Quiz(models.Model):
     name = models.CharField(max_length=256)
     start_time = models.DateTimeField()
+    description = models.TextField()
     duration = models.PositiveIntegerField(
         default=180, help_text='Duration in minutes')
     uploaded_at = models.DateTimeField(auto_now_add=True)
