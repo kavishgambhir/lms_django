@@ -5,30 +5,27 @@
         <span>Smart Class</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
+      <v-btn flat href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank">
         <span class="mr-2">Login</span>
         <v-icon>fa-external-link</v-icon>
       </v-btn>
     </v-toolbar>
 
     <v-content>
-      <router-view/>
+      <v-container>
+        <router-view/>
+      </v-container>
     </v-content>
   </v-app>
 </template>
 
 <script>
-
 export default {
-  name: 'App',
-  data () {
+  name: "App",
+  data() {
     return {
       //
-    }
+    };
   }
-}
+};
 </script>
