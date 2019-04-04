@@ -79,9 +79,6 @@
       </v-menu>
     </template>
 
-
-    
-
     <v-checkbox
       v-model="checkbox"
       :rules="[v => !!v || 'You must agree to continue!']"
@@ -94,7 +91,6 @@
     <v-btn :disabled="!valid" color="info" @click="sendRequest">Send</v-btn>
 
     <v-btn color="error" @click="reset">Reset Form</v-btn>
-
   </v-form>
 </template>
 <script>
@@ -161,14 +157,25 @@ export default {
       this.$refs.form.reset();
     },
     sendRequest() {
-      Axios.create().post("/api/instructor-profiles/", this.model);
+      this.$httpClient
+        .post("/api/sign-up/", this.model)
+        .then(resp => console.log(resp))
+        .catch(err => console.log(err.response));
     }
   },
   mounted() {
-    Axios.create()
+    this.$httpClient
       .get("/api/departments/")
       .then(resp => (this.departments = resp.data))
       .catch(err => console.log(err));
+  },
+  watch: {
+      model: {
+          handler (val) {
+            this.model.user.username = val.user.email
+          },
+          deep: true
+      }
   }
 };
 </script>
