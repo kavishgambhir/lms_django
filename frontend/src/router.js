@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import QuizList from './views/QuizList.vue'
 import SignUp from './views/SignUp.vue'
+import Calendar from './views/Calendar.vue'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/sign-up',
       name: 'sign-up',
       component: SignUp
+    },
+    {
+      path: '/calendar',
+      name: 'calendar',
+      component: Calendar
     }
     /* {
       path: '/about',

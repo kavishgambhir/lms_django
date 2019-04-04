@@ -2,7 +2,7 @@
   <v-layout row>
     <v-flex xs12 sm8 offset-sm2>
       <v-card>
-        <v-list two-line>
+        <v-list three-line>
           <template v-for="(item, index) in items">
             <v-list-tile :key="item.name" ripple xs12 @click="route(item.url)">
               <v-layout row wrap>
@@ -14,6 +14,10 @@
                 <v-flex xs1 text-xs-right>
                   <v-icon v-if="item.is_active" class="mdi mdi-circle" small color="green"></v-icon>
                   <v-icon v-else  class="mdi mdi-circle-outline" small></v-icon>
+                </v-flex>
+
+                <v-flex xs12>
+                  <span>{{ item.description }}</span>
                 </v-flex>
 
                 <v-flex xs4>
