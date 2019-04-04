@@ -18,7 +18,7 @@ class ProfileCreateAPIView(APIView):
         'student': StudentProfileSerializer,
         'instructor': InstructorProfileSerializer
     }
-    permission_classes_by_action = {'create': [AllowAny]}
+
     def get_serializer(self, *args, **kwargs):
         kwargs['context'] = self.get_serializer_context()
         return self.serializer_class(*args, **kwargs)
