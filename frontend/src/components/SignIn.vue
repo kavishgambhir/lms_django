@@ -1,26 +1,6 @@
 <template>
   <v-form ref="form" v-model="valid" lazy-validation>
-    <h1>Sign Up</h1>
-    <v-text-field
-      v-model="model.user.first_name"
-      :counter="10"
-      :rules="nameRules"
-      label="First Name"
-      required
-    ></v-text-field>
-    <v-text-field
-      v-model="model.user.last_name"
-      :counter="10"
-      :rules="nameRules"
-      label="Last Name"
-      required
-    ></v-text-field>
-
     <v-text-field v-model="model.user.email" :rules="emailRules" label="E-mail" required></v-text-field>
-    <v-radio-group v-model="model.type" label="Role" required>
-      <v-radio v-for="item in profileTypes" :key="item.value" :label="item.key" :value="item.value"></v-radio>
-    </v-radio-group>
-
     <v-text-field
       v-model="model.user.password"
       :append-icon="show1 ? 'visibility' : 'visibility_off'"
@@ -32,72 +12,13 @@
       counter
       @click:append="show1 = !show1"
     ></v-text-field>
-
-    <v-select
-      v-model="model.department"
-      :items="departments"
-      item-text="name"
-      item-value="url"
-      label="Department"
-    ></v-select>
-
-    <v-text-field
-      v-if="model.type === 'student'"
-      v-model="model.roll_number"
-      label="Roll Number"
-      required
-    ></v-text-field>
-
-    <template v-if="model.type ==='student'">
-      <v-menu
-        ref="menu"
-        v-model="menu"
-        :close-on-content-click="false"
-        :nudge-right="40"
-        lazy
-        transition="scale-transition"
-        offset-y
-        full-width
-        min-width="290px"
-      >
-        <template v-slot:activator="{ on }">
-          <v-text-field
-            v-model="model.dob"
-            label="Date of Birth"
-            prepend-icon="event"
-            readonly
-            v-on="on"
-          ></v-text-field>
-        </template>
-        <v-date-picker
-          ref="picker"
-          v-model="model.dob"
-          :max="new Date().toISOString().substr(0, 10)"
-          min="1950-01-01"
-          @change="save"
-        ></v-date-picker>
-      </v-menu>
-    </template>
-
-    <v-checkbox
-      v-model="checkbox"
-      :rules="[v => !!v || 'You must agree to continue!']"
-      label="Do you agree?"
-      required
-    ></v-checkbox>
-
-    <v-btn :disabled="!valid" color="success" @click="validate">Validate</v-btn>
-
-    <v-btn :disabled="!valid" color="info" @click="sendRequest">Send</v-btn>
-
-    <v-btn color="error" @click="reset">Reset Form</v-btn>
-  </v-form>
+</v-form>
 </template>
 <script>
 import Axios from "axios";
 
 export default {
-  name: "SignUp",
+  name: "SignIn",
   data: () => ({
     model: {
       user: {

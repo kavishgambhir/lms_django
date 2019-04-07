@@ -9,6 +9,7 @@ from rest_framework.settings import api_settings
 from account.metadata import ProfileMetadata
 from account.serializers import StudentProfileSerializer, InstructorProfileSerializer
 
+
 class ProfileCreateAPIView(APIView):
     http_method_names = ['head', 'options', 'post']
     permission_classes = (AllowAny,)
