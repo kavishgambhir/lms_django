@@ -5,10 +5,6 @@
         <span>Smart Class</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn flat href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank">
-        <span class="mr-2">Login</span>
-        <v-icon>fa-external-link</v-icon>
-      </v-btn>
     </v-toolbar>
 
     <v-content>
@@ -24,7 +20,7 @@ export default {
   name: "App",
   data() {
     return {
-      //
+      
     };
   }
 };

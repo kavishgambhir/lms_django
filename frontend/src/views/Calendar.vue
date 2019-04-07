@@ -3,12 +3,11 @@
     <ds-calendar-app :calendar="calendar"></ds-calendar-app>
 </template>
 <style>
-body, html, #dayspan {
-  font-family: Roboto, sans-serif;
-  width: 100%;
-  height: 100%;
+.v-toolbar--fixed{
+  position: relative !important;
 }
 </style>
+
 <script>
 import { Calendar } from 'dayspan';
 
