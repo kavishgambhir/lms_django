@@ -7,10 +7,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework import status
 from rest_framework.settings import api_settings
 from account.metadata import ProfileMetadata
-from django.contrib.auth.models import User
-from django.contrib.auth.hashers import check_password
-from account.serializers import StudentProfileSerializer, InstructorProfileSerializer, LoginSerializer
-
+from account.serializers import StudentProfileSerializer, InstructorProfileSerializer
 
 
 class ProfileCreateAPIView(APIView):
@@ -58,38 +55,3 @@ class ProfileCreateAPIView(APIView):
 
     def post(self, request, *args, **kwargs):
         return self.create(request.data)
-
-
-class LoginAPIView(APIView):
-    http_method_names = {'post', 'options', 'head'}
-    serializer_class = LoginSerializer
-    permission_classes = (AllowAny,)
-
-    def post(self, request, *args, **kwargs):
-        return self.validate(request.data)
-
-    def validate(self, data):
-        data = dict(data)
-        # data.pop('type')
-        # serializer = self.get_serializer(data=data)
-        # if serializer.is_valid(raise_exception=True):
-        #     serializer.save()
-        # headers = self.get_success_headers(serializer.data)
-        # return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-        username = data["username"]
-        password = data["password"]
-        
-        user = User.objects.filter(username=username).first()
-        if (user):
-            if(check_password(password, user.password)):
-                message = "success",
-                status1 = status.HTTP_200_OK
-            else:
-                message = "failure",
-                status1 = status.HTTP_200_OK
-        else:
-            message = "userid invalid",
-            status1 = status.HTTP_200_OK
-        return Response({
-            message
-        }, status1)
