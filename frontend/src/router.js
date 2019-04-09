@@ -2,8 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import QuizList from './views/QuizList.vue'
+import Quiz from './views/Quiz.vue'
 import Calendar from './views/Calendar.vue'
 import About from './views/About.vue'
+import Login from './views/Login.vue'
 
 Vue.use(Router)
 
@@ -22,6 +24,11 @@ export default new Router({
       component: QuizList
     },
     {
+      path: '/quizes/:id',
+      name: 'quiz',
+      component: Quiz
+    },
+    {
       path: '/calendar',
       name: 'calendar',
       component: Calendar
@@ -33,6 +40,16 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('./views/About.vue')
-    }
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: About
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
   ]
 })
