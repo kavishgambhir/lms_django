@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
+from account.models import StudentProfile
 
 class Quiz(models.Model):
     name = models.CharField(max_length=256)
@@ -12,6 +12,9 @@ class Quiz(models.Model):
 
     class Meta:
         verbose_name_plural = 'quizes'
+    
+    def __str__(self):
+        return self.name
 
     @property
     def end_time(self):
@@ -21,3 +24,45 @@ class Quiz(models.Model):
     def is_active(self):
         now = timezone.now()
         return now > self.start_time and now < self.end_time
+
+    @property
+    def total_marks(self):
+        return self.question_set.aggregate(total_marks=models.Sum('positive_marks'))['total_marks']
+
+
+class Question(models.Model):
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    text = models.TextField()
+    correct_choice = models.ForeignKey('Choice', related_name='correct_choice_for_question', limit_choices_to={'question_id': self.id}, on_delete=models.CASCADE, blank=True, null=True)
+    positive_marks = models.IntegerField(default=1)
+    negative_marks = models.FloatField(default=-0.25)
+
+    def __str__(self):
+        return 'Q. for {}'.format(self.quiz.name)
+
+
+class Choice(models.Model):
+    question = models.ForeignKey(Question, related_name="choices", on_delete=models.CASCADE)
+    text = models.CharField(max_length=512)
+
+    class Meta:
+        ordering = ('text',)
+    
+    def __str__(self):
+        return self.text
+
+
+class QuizSession(models.Model):
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    student_profile = models.ForeignKey(StudentProfile, on_delete=models.CASCADE)
+    selected_choices = models.ManyToManyField(Choice, through='ChoiceMapping', through_fields=('quiz_session', 'choice'))
+
+    @property
+    def marks_obtained(self):
+        return 0
+
+
+class ChoiceMapping(models.Model):
+    quiz_session = models.ForeignKey(QuizSession, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice = models.ForeignKey(Choice, on_delete=models.CASCADE)

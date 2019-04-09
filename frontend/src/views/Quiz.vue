@@ -14,7 +14,7 @@
       </template>
     </v-list>
 
-    <v-btn @click="submit">Hello</v-btn>
+    <v-btn @click="submit">Submit</v-btn>
 
     <p>{{ questions[0].selectedChoice || 'null' }}</p>
     <p>{{ questions[1].selectedChoice || 'null' }}</p>
@@ -23,8 +23,6 @@
 
 
 <script>
-import Axios from "axios";
-
 export default {
   name: "Quiz",
   data() {
@@ -59,13 +57,13 @@ export default {
     };
   },
   methods: {
-      submit(){
+      submit () {
           this.questions.forEach(ques => {
               console.log(ques.selectedChoice)
           });
       }
   },
-  created() {
+  created () {
     const quiz_id = this.$route.params.id;
     console.log(quiz_id);
     Axios.create()
