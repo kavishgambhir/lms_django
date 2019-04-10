@@ -20,8 +20,8 @@ from django.conf import settings
 from rest_framework import routers
 from assessment.serializers import QuizViewSet
 from department.serializers import DepartmentViewSet
-from account.serializers import StudentProfileViewSet, InstructorProfileViewSet
-from account.views import ProfileCreateAPIView
+from account.serializers import StudentProfileViewSet, InstructorProfileViewSet, LoginViewSet
+from account.views import ProfileCreateAPIView, LoginAPIView
 
 router = routers.DefaultRouter()
 router.register(r'quizes', QuizViewSet)
@@ -29,13 +29,15 @@ router.register(r'student-profiles', StudentProfileViewSet)
 router.register(r'instructor-profiles', InstructorProfileViewSet)
 router.register(r'quizes', QuizViewSet)
 router.register(r'departments', DepartmentViewSet)
+router.register(r'login',LoginViewSet)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/sign-up/', ProfileCreateAPIView.as_view(), name='sign-up'),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/sign-in/', LoginAPIView.as_view(), name='sign-in')
 ]
 
 if settings.DEBUG:
