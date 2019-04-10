@@ -1,8 +1,8 @@
 <template>
   <v-form ref="form" v-model="valid" lazy-validation>
-    <v-text-field v-model="model.user.email" :rules="emailRules" label="E-mail" required></v-text-field>
+    <v-text-field v-model="model.email" :rules="emailRules" label="E-mail" required></v-text-field>
     <v-text-field
-      v-model="model.user.password"
+      v-model="model.password"
       :append-icon="show1 ? 'visibility' : 'visibility_off'"
       :rules="[rules.required, rules.min]"
       :type="show1 ? 'text' : 'password'"
@@ -12,6 +12,7 @@
       counter
       @click:append="show1 = !show1"
     ></v-text-field>
+    <v-btn @click="submit">Submit</v-btn>
 </v-form>
 </template>
 <script>
@@ -21,19 +22,10 @@ export default {
   name: "SignIn",
   data: () => ({
     model: {
-      user: {
-        username: "",
-        first_name: "",
-        last_name: "",
+      
         email: "",
-        password: ""
-      },
-      type: "student",
-      dob: "",
-      roll_number: "",
-      department: "",
-      avatar: null,
-      dob: null
+        password: "",
+        username: ""
     },
     response: "",
     show1: false,
@@ -42,12 +34,6 @@ export default {
       min: v => v.length >= 8 || "Min 8 characters",
       emailMatch: () => "The email and password you entered don't match"
     },
-    menu: false,
-    valid: true,
-    nameRules: [
-      v => !!v || "Name is required",
-      v => (v && v.length <= 10) || "Name must be less than 10 characters"
-    ],
     emailRules: [
       v => !!v || "E-mail is required",
       v => /.+@.+/.test(v) || "E-mail must be valid"
@@ -57,14 +43,8 @@ export default {
       { key: "Student", value: "student" },
       { key: "Instructor", value: "instructor" }
     ],
-    departments: [],
     checkbox: false
   }),
-  watch: {
-    menu(val) {
-      val && setTimeout(() => (this.$refs.picker.activePicker = "YEAR"));
-    }
-  },
   methods: {
     save(date) {
       this.$refs.menu.save(date);
@@ -74,29 +54,26 @@ export default {
         this.snackbar = true;
       }
     },
-    reset() {
-      this.$refs.form.reset();
-    },
-    sendRequest() {
+    submit() {
       this.$httpClient
-        .post("/api/sign-up/", this.model)
+        .post("/api/sign-in/", this.model)
         .then(resp => console.log(resp))
         .catch(err => console.log(err.response));
     }
+  },
+    watch: {
+      model: {
+          handler (val) {
+            this.model.username = val.email
+          },
+          deep: true
+      }
   },
   mounted() {
     this.$httpClient
       .get("/api/departments/")
       .then(resp => (this.departments = resp.data))
       .catch(err => console.log(err));
-  },
-  watch: {
-      model: {
-          handler (val) {
-            this.model.user.username = val.user.email
-          },
-          deep: true
-      }
   }
 };
 </script>

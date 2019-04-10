@@ -29,7 +29,7 @@ router.register(r'student-profiles', StudentProfileViewSet)
 router.register(r'instructor-profiles', InstructorProfileViewSet)
 router.register(r'quizes', QuizViewSet)
 router.register(r'departments', DepartmentViewSet)
-router.register(r'login',LoginViewSet)
+router.register(r'sign-in',LoginViewSet)
 
 
 urlpatterns = [

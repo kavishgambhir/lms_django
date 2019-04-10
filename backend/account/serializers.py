@@ -50,7 +50,7 @@ class InstructorProfileViewSet(viewsets.ModelViewSet):
 class LoginSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model= User
-        fields = {'username','password'}
+        fields = ('username','password')
 class LoginViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = LoginSerializer
