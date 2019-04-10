@@ -43,16 +43,7 @@ class StudentProfileViewSet(viewsets.ModelViewSet):
     queryset = StudentProfile.objects.all()
     serializer_class = StudentProfileSerializer
 
+
 class InstructorProfileViewSet(viewsets.ModelViewSet):
     queryset = InstructorProfile.objects.all()
     serializer_class = InstructorProfileSerializer
-
-class LoginSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model= User
-        fields = ('username','password')
-class LoginViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = LoginSerializer
-
-

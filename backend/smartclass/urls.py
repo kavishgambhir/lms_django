@@ -17,11 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from rest_framework import routers
+from rest_framework import routers, urls
 from assessment.serializers import QuizViewSet
 from department.serializers import DepartmentViewSet
-from account.serializers import StudentProfileViewSet, InstructorProfileViewSet, LoginViewSet
-from account.views import ProfileCreateAPIView, LoginAPIView
+from account.serializers import StudentProfileViewSet, InstructorProfileViewSet
+from account.views import ProfileCreateAPIView, LoginAPIView, LogoutAPIView, AuthenticationCheckAPIView
+from django.contrib.auth.views import LoginView
 
 router = routers.DefaultRouter()
 router.register(r'quizes', QuizViewSet)
@@ -29,15 +30,15 @@ router.register(r'student-profiles', StudentProfileViewSet)
 router.register(r'instructor-profiles', InstructorProfileViewSet)
 router.register(r'quizes', QuizViewSet)
 router.register(r'departments', DepartmentViewSet)
-router.register(r'sign-in',LoginViewSet)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/sign-up/', ProfileCreateAPIView.as_view(), name='sign-up'),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('api/sign-in/', LoginAPIView.as_view(), name='sign-in')
+    path('api/sign-in/', LoginAPIView.as_view(), name='sign-in'),
+    path('api/sign-out/', LogoutAPIView.as_view(), name='sign-out'),
+    path('api/auth-check/', AuthenticationCheckAPIView.as_view(), name='auth-check')
 ]
 
 if settings.DEBUG:
