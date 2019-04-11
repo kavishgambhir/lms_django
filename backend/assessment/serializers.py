@@ -4,7 +4,7 @@ from rest_framework.permissions import AllowAny
 
 
 class ChoiceSerializer(serializers.ModelSerializer):
-    is_correct = serializers.BooleanField(default=False)
+    # is_correct = serializers.BooleanField(default=False)
 
     class Meta:
         model = Choice
