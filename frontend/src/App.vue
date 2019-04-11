@@ -53,7 +53,8 @@ export default {
       items: [
           {icon: 'mdi mdi-account-circle', title: 'Home', path: '/home'},
           {icon: 'mdi mdi-calendar', title: 'Calendar', path: '/calendar'},
-          {icon: 'mdi mdi-file', title: 'Quiz', path: '/quizes'}
+          {icon: 'mdi mdi-file', title: 'Quiz', path: '/quizes'},
+          {icon: 'mdi mdi-file', title: 'Feedback', path: '/feedback'}
       ]
       //
 
