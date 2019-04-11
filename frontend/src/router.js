@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import QuizList from './views/QuizList.vue'
 import Quiz from './views/Quiz.vue'
+import CreateNewQuiz from './views/CreateNewQuiz.vue'
 import Calendar from './views/Calendar.vue'
 import About from './views/About.vue'
 import Login from './views/Login.vue'
@@ -27,6 +28,11 @@ export default new Router({
       path: '/quizes/:id',
       name: 'quiz',
       component: Quiz
+    },
+    {
+      path: '/quiz/create-new-quiz',
+      name: 'Create New Quiz',
+      component: CreateNewQuiz
     },
     {
       path: '/calendar',
