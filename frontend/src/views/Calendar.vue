@@ -1,13 +1,10 @@
 <template>
     <!-- <p>asdfs</p> -->
-    <ds-calendar-app :calendar="calendar" fixed app></ds-calendar-app>
+    <ds-calendar-app :calendar="calendar"></ds-calendar-app>
 </template>
 <style>
 .v-toolbar--fixed{
   position: relative !important;
-}
-.ds-calendar-app > .ds-app-calendar-toolbar{
-    visibility: hidden!important;
 }
 </style>
 

@@ -31,7 +31,7 @@ class Quiz(models.Model):
 
 
 class Question(models.Model):
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name='questions')
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     text = models.TextField()
     correct_choice = models.ForeignKey('Choice', related_name='correct_choice_for_question', on_delete=models.CASCADE, blank=True, null=True)
     positive_marks = models.IntegerField(default=1)
