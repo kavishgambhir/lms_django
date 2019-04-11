@@ -1,5 +1,5 @@
 <template>
-  <v-form ref="form" v-model="valid" lazy-validation>
+  <v-form ref="form" lazy-validation>
     <v-text-field v-model="model.email" :rules="emailRules" label="E-mail" required></v-text-field>
     <v-text-field
       v-model="model.password"
@@ -16,7 +16,8 @@
 </v-form>
 </template>
 <script>
-import Axios from "axios";
+import Axios from 'axios'
+import { mapActions } from 'vuex'
 
 export default {
   name: "SignIn",
@@ -46,6 +47,9 @@ export default {
     checkbox: false
   }),
   methods: {
+    ...mapActions('profile', [
+      'setProfile'
+    ]),
     save(date) {
       this.$refs.menu.save(date);
     },
@@ -57,8 +61,12 @@ export default {
     submit() {
       this.$httpClient
         .post("/api/sign-in/", this.model)
-        .then(resp => console.log(resp))
-        .catch(err => console.log(err.response));
+        .then(resp => {
+          this.setProfile(resp.data)
+          this.$router.push({name: 'Dashboard'})
+          }
+        )
+        .catch(err => console.log(err));
     }
   },
     watch: {
@@ -73,7 +81,7 @@ export default {
     this.$httpClient
       .get("/api/departments/")
       .then(resp => (this.departments = resp.data))
-      .catch(err => console.log(err));
+      .catch(err => console.log(err))
   }
-};
+}
 </script>

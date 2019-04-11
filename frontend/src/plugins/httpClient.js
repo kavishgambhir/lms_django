@@ -5,7 +5,7 @@ const httpClient = axios.create({
   xsrfHeaderName: 'X-CSRFToken'
 })
 
-export {httpClient}
+export { httpClient }
 
 export default {
   install (Vue, options) {

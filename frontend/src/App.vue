@@ -1,27 +1,20 @@
 <template>
   <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Smart Class</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-    </v-toolbar>
+    <core-filter />
 
-    <v-content>
-      <v-container>
-        <router-view/>
-      </v-container>
-    </v-content>
+    <core-toolbar />
+
+    <core-drawer />
+
+    <core-view />
   </v-app>
 </template>
 
-<script>
-export default {
-  name: "App",
-  data() {
-    return {
-      
-    };
-  }
-};
-</script>
+<style lang="scss">
+@import '@/styles/index.scss';
+
+/* Remove in 1.2 */
+.v-datatable thead th.column.sortable i {
+  vertical-align: unset;
+}
+</style>
