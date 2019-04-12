@@ -31,7 +31,6 @@ Vue.use(httpClientPlugin)
 //     getDefaultEventColor: () => '#1976d2'
 //   }
 // })
-
 Vue.use(Vuetify)
 /* eslint-disable no-new */
 new Vue({

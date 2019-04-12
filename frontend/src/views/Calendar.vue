@@ -196,6 +196,11 @@ export default {
     }
   },
   mounted: function() {
+    let recaptchaScript = document.createElement('script')
+    recaptchaScript.async = true
+    recaptchaScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js')
+    
+    document.head.appendChild(recaptchaScript)
     this.setMonth();
     this.setYear();
     this.setMounthWeek();
