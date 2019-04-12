@@ -22,7 +22,7 @@ import Vuetify from 'vuetify/lib'
 // Sync store with router
 sync(store, router)
 
-Vue.config.productionTip = false
+// Vue.config.productionTip = false
 
 Vue.use(httpClientPlugin)
 
