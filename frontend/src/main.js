@@ -3,7 +3,6 @@
 import Vue from 'vue'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import 'vuetify/dist/vuetify.min.css'
-// import 'dayspan-vuetify/dist/lib/dayspan-vuetify.min.css'
 // Components
 import './components'
 
@@ -31,7 +30,7 @@ Vue.use(httpClientPlugin)
 //   methods: {
 //     getDefaultEventColor: () => '#1976d2'
 //   }
-// });
+// })
 
 Vue.use(Vuetify)
 /* eslint-disable no-new */

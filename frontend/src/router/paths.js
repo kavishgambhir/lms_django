@@ -19,6 +19,10 @@ export default [
     view: 'Home'
   },
   {
+    path: '/feedback',
+    view: 'Feedback'
+  },
+  {
     path: '/user-profile',
     name: 'User Profile',
     view: 'UserProfile'
@@ -43,6 +47,10 @@ export default [
   {
     path: '/notifications',
     view: 'Notifications'
+  },
+  {
+    path: '/calendar',
+    view: 'Calendar'
   },
   {
     path: '/upgrade',

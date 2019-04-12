@@ -97,19 +97,19 @@ export default {
         text: 'User Profile'
       },
       {
-        to: '/table-list',
-        icon: 'mdi-clipboard-outline',
-        text: 'Table List'
+        to: '/calendar',
+        icon: 'mdi-calendar',
+        text: 'Calendar'
       },
       {
-        to: '/typography',
-        icon: 'mdi-format-font',
-        text: 'Typography'
+        to: '/quiz',
+        icon: 'mdi-file-question',
+        text: 'Quiz'
       },
       {
-        to: '/icons',
-        icon: 'mdi-chart-bubble',
-        text: 'Icons'
+        to: '/feedback',
+        icon: 'mdi-message-alert',
+        text: 'Feedback'
       },
       {
         to: '/maps',
