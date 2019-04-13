@@ -49,7 +49,9 @@ export default {
   methods: {
     ...mapActions('profile', [
       'setProfile'
-    ]),
+    ],
+    'auth',
+    ['login']),
     save(date) {
       this.$refs.menu.save(date);
     },
@@ -63,6 +65,7 @@ export default {
         .post("/api/sign-in/", this.model)
         .then(resp => {
           this.setProfile(resp.data)
+          this.$store.dispatch('auth/login')
           this.$router.push({name: 'Dashboard'})
           }
         )

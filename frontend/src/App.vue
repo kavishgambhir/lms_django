@@ -1,6 +1,9 @@
 <template>
   <v-app>
     <core-filter/>
+
+    <v-app id="app">
+
       <!-- <v-navigation-drawer :clipped="$vuetify.breakpoint.lgAndUp" v-model="drawer" fixed app>
       <v-list>
         <v-list-tile v-for="(item,i) in items" :key="i" :to="item.path">
@@ -36,11 +39,19 @@
 
       </v-toolbar>-->
 
-      <core-toolbar/>
+     <!--  <core-toolbar/>
 
       <core-drawer/>
 
-      <core-view/>
+      <core-view/> -->
+
+      <core-toolbar v-if="isLoggedIn"/>
+
+      <core-drawer v-if="isLoggedIn"/>
+
+      <core-view />
+    </v-app>
+
   </v-app>
 </template>
 
@@ -55,8 +66,15 @@
 </style>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
+
   name: "App",
+  computed:
+  {
+    ...mapGetters('auth', ['isLoggedIn'])
+  },
   data() {
     return {
       drawer: true,

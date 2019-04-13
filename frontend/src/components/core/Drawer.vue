@@ -28,8 +28,9 @@
               contain
             />
           </v-list-tile-avatar>
-          <v-list-tile-title class="title">
-            Vuetify MD
+          <v-list-tile-title class="title" value="">
+            Welcome 
+            <!-- Welcome {{user.first_name}} -->
           </v-list-tile-title>
         </v-list-tile>
         <v-divider/>
@@ -57,19 +58,6 @@
             v-text="link.text"
           />
         </v-list-tile>
-        <v-list-tile
-          disabled
-          active-class="primary"
-          class="v-list-item v-list__tile--buy"
-          to="/upgrade"
-        >
-          <v-list-tile-action>
-            <v-icon>mdi-package-up</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title class="font-weight-light">
-            Upgrade To PRO
-          </v-list-tile-title>
-        </v-list-tile>
       </v-layout>
     </v-img>
   </v-navigation-drawer>
@@ -79,10 +67,14 @@
 // Utilities
 import {
   mapMutations,
-  mapState
+  mapState,
+  mapGetters
 } from 'vuex'
 
 export default {
+ computed: {
+    ...mapGetters("profile", ["profileType", "profile", "user", "first_name"])
+  },
   data: () => ({
     logo: './img/vuetifylogo.png',
     links: [
@@ -139,6 +131,7 @@ export default {
     }
   },
   mounted () {
+    console.log(this.first_name)
     this.onResponsiveInverted()
     window.addEventListener('resize', this.onResponsiveInverted)
   },
