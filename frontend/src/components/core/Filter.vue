@@ -121,6 +121,7 @@ import {
 } from 'vuex'
 
 export default {
+  name: 'core-filter',
   data: () => ({
     colors: [
       'primary',

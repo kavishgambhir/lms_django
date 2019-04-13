@@ -4,7 +4,7 @@
   <div id="calendar">
     <div class="header">
       <button v-on:click="prevMonth()">Hi</button>
-      {{moment(currentMonth+1,'MM').format('MMMM') }} {{currentYear}}
+      {{ moment(currentMonth+1,'MM').format('MMMM') }} {{currentYear}}
       <button
         v-on:click="nextMonth()"
       >></button>
@@ -106,6 +106,8 @@
 </style>
 
 <script>
+import moment from 'moment'
+
 export default {
   name: "Calendar",
   data() {
@@ -117,7 +119,16 @@ export default {
       today: moment(),
       currentMonth: "",
       currentYear: "",
-      daySelected: ""
+      daySelected: "",
+      moment: moment,
+      events: [{
+                date: '02-10-2019',
+                event: 'coucou les ptits loups'
+              },{
+                date: '03-16-2019',
+                event: 'Boom Party'
+              },
+               ]
     };
   },
   methods: {
@@ -146,7 +157,7 @@ export default {
       }
     },
     getDay: function(week) {
-      return (days = Array(7)
+      return (Array(7)
         .fill(0)
         .map((n, i) => {
           let day = this.today
@@ -161,7 +172,7 @@ export default {
         }));
     },
     getDayEvent: function(day) {
-      return events.filter(ev => {
+      return this.events.filter(ev => {
         if (day.isSame(moment(new Date(ev.date)))) {
           return ev.event;
         } else {
@@ -196,11 +207,11 @@ export default {
     }
   },
   mounted: function() {
-    let recaptchaScript = document.createElement('script')
-    recaptchaScript.async = true
-    recaptchaScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js')
+    // let recaptchaScript = document.createElement('script')
+    // recaptchaScript.async = true
+    // recaptchaScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js')
     
-    document.head.appendChild(recaptchaScript)
+    // document.head.appendChild(recaptchaScript)
     this.setMonth();
     this.setYear();
     this.setMounthWeek();
