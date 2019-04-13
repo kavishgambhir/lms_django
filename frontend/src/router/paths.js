@@ -20,12 +20,19 @@ export default [
   },
   {
     path: '/feedback',
-    view: 'Feedback'
+    view: 'Feedback',
+    name: 'Feedback',
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/user-profile',
     name: 'User Profile',
-    view: 'UserProfile'
+    view: 'UserProfile',
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/table-list',
