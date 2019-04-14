@@ -30,8 +30,8 @@ router.register(r'student-profiles', StudentProfileViewSet)
 router.register(r'instructor-profiles', InstructorProfileViewSet)
 router.register(r'quizes', QuizViewSet)
 router.register(r'departments', DepartmentViewSet)
-router.register(r'Courses',CourseViewSet)
-router.register(r'Course-offerings',CourseOfferingViewSet)
+router.register(r'courses',CourseViewSet)
+router.register(r'course-offerings',CourseOfferingViewSet)
 
 
 urlpatterns = [
