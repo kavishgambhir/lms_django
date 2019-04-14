@@ -55,7 +55,7 @@
             <h4 class="card-title font-weight-light">{{user.first_name+' '+user.last_name}}</h4>
             <p
               class="card-description font-weight-light"
-            >Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...</p>
+            >Saksham Gupta</p>
             <v-btn color="success" round class="font-weight-light">Follow</v-btn>
           </v-card-text>
         </material-card>
@@ -70,6 +70,10 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   computed: {
     ...mapGetters("profile", ["profileType", "profile", "user", "first_name"])
+  },
+  mounted()
+  {
+    console.log(this.profileType)
   }
 }
 </script>

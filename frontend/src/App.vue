@@ -66,7 +66,7 @@
 </style>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
 
@@ -86,6 +86,18 @@ export default {
       ]
       //
     };
+  },
+  methods: {
+    ...mapActions('profile', [
+      'setProfile'
+    ],
+    'auth',
+    ['login']),
+  },
+  created() {
+    const x = localStorage.getItem('profile')
+    console.log(x)
+    this.setProfile(JSON.parse(x))
   }
 };
 </script>

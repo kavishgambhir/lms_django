@@ -50,6 +50,7 @@
           :active-class="color"
           avatar
           class="v-list-item"
+          v-if="link.profile === 'all' || profileType === link.profile"
         >
           <v-list-tile-action>
             <v-icon>{{ link.icon }}</v-icon>
@@ -72,26 +73,26 @@ import {
 } from 'vuex'
 
 export default {
- computed: {
-    ...mapGetters("profile", ["profileType", "profile", "user", "first_name"])
-  },
   data: () => ({
     logo: './img/vuetifylogo.png',
     links: [
       {
         to: '/dashboard',
         icon: 'mdi-view-dashboard',
-        text: 'Dashboard'
+        text: 'Dashboard',
+        profile: 'all'
       },
       {
         to: '/user-profile',
         icon: 'mdi-account',
-        text: 'User Profile'
+        text: 'User Profile',
+        profile: 'student-profile'
       },
       {
         to: '/calendar',
         icon: 'mdi-calendar',
-        text: 'Calendar'
+        text: 'Calendar',
+        profile: 'student-profile'
       },
       {
         to: '/quiz',
@@ -106,18 +107,21 @@ export default {
       {
         to: '/maps',
         icon: 'mdi-map-marker',
-        text: 'Maps'
+        text: 'Maps',
+        profile: 'student-profile'
       },
       {
         to: '/notifications',
         icon: 'mdi-bell',
-        text: 'Notifications'
+        text: 'Notifications',
+        profile: 'student-profile'
       }
     ],
     responsive: false
   }),
   computed: {
     ...mapState('app', ['image', 'color']),
+    ...mapGetters("profile", ["profileType", "profile", "user", "first_name"]),
     inputValue: {
       get () {
         return this.$store.state.app.drawer
@@ -128,12 +132,16 @@ export default {
     },
     items () {
       return this.$t('Layout.View.items')
+    },
+    isStudent(){
+      const x = this.$store.state.type;
     }
   },
   mounted () {
-    console.log(this.first_name)
+    console.log(this.profileType)
     this.onResponsiveInverted()
     window.addEventListener('resize', this.onResponsiveInverted)
+    console.log('suthar', this.profile);
   },
   beforeDestroy () {
     window.removeEventListener('resize', this.onResponsiveInverted)

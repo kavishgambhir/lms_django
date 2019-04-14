@@ -65,6 +65,7 @@ export default {
         .post("/api/sign-in/", this.model)
         .then(resp => {
           this.setProfile(resp.data)
+          localStorage.setItem('profile', JSON.stringify(resp.data))
           this.$store.dispatch('auth/login')
           this.$router.push({name: 'Dashboard'})
           }
