@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from rest_framework import routers, urls
 from assessment.serializers import QuizViewSet
-from department.serializers import DepartmentViewSet
+from department.serializers import DepartmentViewSet , CourseOfferingViewSet, CourseViewSet
 from account.serializers import StudentProfileViewSet, InstructorProfileViewSet
 from account.views import ProfileCreateAPIView, LoginAPIView, LogoutAPIView, AuthenticationCheckAPIView
 from django.contrib.auth.views import LoginView
@@ -30,6 +30,8 @@ router.register(r'student-profiles', StudentProfileViewSet)
 router.register(r'instructor-profiles', InstructorProfileViewSet)
 router.register(r'quizes', QuizViewSet)
 router.register(r'departments', DepartmentViewSet)
+router.register(r'Courses',CourseViewSet)
+router.register(r'Course-offerings',CourseOfferingViewSet)
 
 
 urlpatterns = [
