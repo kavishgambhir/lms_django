@@ -95,6 +95,12 @@ export default {
         profile: 'student-profile'
       },
       {
+        to: '/courses',
+        icon: 'collections_bookmark',
+        text:'Courses Offered',
+        profile: 'instructor-profile'
+      },
+      {
         to: '/quiz',
         icon: 'mdi-file-question',
         text: 'Quiz'
@@ -141,7 +147,6 @@ export default {
     console.log(this.profileType)
     this.onResponsiveInverted()
     window.addEventListener('resize', this.onResponsiveInverted)
-    console.log('suthar', this.profile);
   },
   beforeDestroy () {
     window.removeEventListener('resize', this.onResponsiveInverted)

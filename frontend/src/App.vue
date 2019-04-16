@@ -96,7 +96,7 @@ export default {
   },
   created() {
     const x = localStorage.getItem('profile')
-    console.log(x)
+    // console.log(x)
     this.setProfile(JSON.parse(x))
   }
 };

@@ -2,10 +2,11 @@ from rest_framework import serializers, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
+from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from department.models import Department, Course, CourseOffering
 from department.permissions import IsStudent, IsInstructor
-from account.models import StudentProfile
+from account.models import StudentProfile, InstructorProfile
 
 
 class DepartmentSerializer(serializers.HyperlinkedModelSerializer):
@@ -19,16 +20,46 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     serializer_class = DepartmentSerializer
 
 
-class CourseOfferingSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = CourseOffering
-        fields = ('course', 'instructor', 'enrolled_students')
-
-
 class CourseSerializer(serializers.HyperlinkedModelSerializer):
+    department = DepartmentSerializer()
+
     class Meta:
         model = Course
         fields = ('name', 'code', 'department')
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'username')
+
+
+class enrolledStrudentSerializer(serializers.HyperlinkedModelSerializer):
+    department = DepartmentSerializer()
+    user = UserSerializer()
+
+    class Meta:
+        model = StudentProfile
+        fields = ('user', 'roll_number', 'department')
+
+
+class CourseInstructorSerializer(serializers.HyperlinkedModelSerializer):
+    department = DepartmentSerializer()
+    user = UserSerializer()
+
+    class Meta:
+        model = InstructorProfile
+        fields = ('user', 'department')
+
+
+class CourseOfferingSerializer(serializers.HyperlinkedModelSerializer):
+    enrolled_students = enrolledStrudentSerializer(many=True)
+    instructor = CourseInstructorSerializer()
+    course = CourseSerializer()
+
+    class Meta:
+        model = CourseOffering
+        fields = ('course', 'instructor', 'enrolled_students')
 
 
 class CourseOfferingViewSet(viewsets.ModelViewSet):
@@ -44,7 +75,8 @@ class CourseOfferingViewSet(viewsets.ModelViewSet):
 
     @action(methods=['get'], detail=True)
     def enroll(self, request, pk=None):
-        get_object_or_404(CourseOffering, pk=pk).enrolled_students.add(request.user.studentprofile)
+        get_object_or_404(CourseOffering, pk=pk).enrolled_students.add(
+            request.user.studentprofile)
         return Response(data={'message': 'enrolled'}, status=status.HTTP_200_OK)
 
 
