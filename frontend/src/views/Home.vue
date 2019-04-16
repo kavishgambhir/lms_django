@@ -11,8 +11,8 @@
       </v-flex>
 
       <v-flex mb-5 xs12>
-        <v-btn v-on:click="signUp">Sign-Up</v-btn>
-        <v-btn v-on:click="signIn">Sign-In</v-btn>
+        <v-btn  color="red" v-on:click="signUp">Sign-Up</v-btn>
+        <v-btn color="green" v-on:click="signIn">Sign-In</v-btn>
       </v-flex>
     </v-layout>
   </v-container>

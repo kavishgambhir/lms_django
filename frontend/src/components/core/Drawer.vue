@@ -29,8 +29,7 @@
             />
           </v-list-tile-avatar>
           <v-list-tile-title class="title" value="">
-            Welcome 
-            <!-- Welcome {{user.first_name}} -->
+            Welcome {{user.first_name}}
           </v-list-tile-title>
         </v-list-tile>
         <v-divider/>
@@ -71,7 +70,6 @@ import {
   mapState,
   mapGetters
 } from 'vuex'
-
 export default {
   data: () => ({
     logo: './img/vuetifylogo.png',
@@ -168,18 +166,15 @@ export default {
   #app-drawer {
     .v-list__tile {
       border-radius: 4px;
-
       &--buy {
         margin-top: auto;
         margin-bottom: 17px;
       }
     }
-
     .v-image__image--contain {
       top: 9px;
       height: 60%;
     }
-
     .search-input {
       margin-bottom: 30px !important;
       padding-left: 15px;
