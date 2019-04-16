@@ -10,64 +10,53 @@
       </v-toolbar>
 
       <v-list two-line>
-        <template v-for="(item, index) in items">
-          <v-subheader v-if="item.header" :key="item.header">{{ item.header }}</v-subheader>
+        <v-list-group v-for="(course, i) in courses" :key="i" v-model="course.active" no-action>
+          <template v-slot:activator>
+            <v-list-tile>
+              <v-list-tile-content>
+                <v-list-tile-title v-html="course.course.name"></v-list-tile-title>
+                <v-list-tile-sub-title>{{ course.course.code + ' | ' + course.instructor.user.username }}</v-list-tile-sub-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </template>
 
-          <v-divider v-else-if="item.divider" :key="index" :inset="item.inset"></v-divider>
-
-          <v-list-tile v-else :key="item.title" avatar @click>
-            <v-list-tile-avatar>
-              <img :src="item.avatar">
-            </v-list-tile-avatar>
-
+          <v-list-tile v-for="(student, k) in course.enrolled_students" :key="k" @click>
             <v-list-tile-content>
-              <v-list-tile-title v-html="item.title"></v-list-tile-title>
-              <v-list-tile-sub-title v-html="item.subtitle"></v-list-tile-sub-title>
+              <v-list-tile-title>{{ student.user.username }}</v-list-tile-title>
+              <v-list-tile-sub-title>{{ student.roll_number + ' | ' + student.department.name }}</v-list-tile-sub-title>
             </v-list-tile-content>
+
+            <v-list-tile-action>
+              <v-icon>{{ student.action }}</v-icon>
+            </v-list-tile-action>
           </v-list-tile>
-        </template>
+        </v-list-group>
       </v-list>
     </v-flex>
   </v-layout>
 </template>
 <script>
 import Axios from "axios";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapActions("course", ["setCourses"])
+    ...mapActions("course", ["setCourses"]),
+    ...mapGetters("course", ["courses"])
   },
   data() {
     return {
-      items: [
-        { header: "Today" },
-        {
-          avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-          title: "Brunch this weekend?",
-          subtitle:
-            "<span class='text--primary'>Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
-        },
-        { divider: true, inset: true },
-        {
-          avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
-          title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
-          subtitle:
-            "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
-        },
-        { divider: true, inset: true },
-        {
-          avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
-          title: "Oui oui",
-          subtitle:
-            "<span class='text--primary'>Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?"
-        }
-      ]
+      suthar: ""
     };
   },
   beforeMount() {
     // this.setCourses();
-    this.$store.dispatch('course/setCourses')
+    this.$store.dispatch("course/setCourses");
+  },
+  methods: {
+    log() {
+      console.log("suthar", this.courses);
+    }
   }
 };
 </script>

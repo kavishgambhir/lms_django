@@ -16,7 +16,7 @@
           color="info"
           type="Line"
         >
-          <h4 class="title font-weight-light">Daily Sales</h4>
+          <h4 class="title font-weight-light">Quiz performances</h4>
           <p class="category d-inline-flex font-weight-light">
             <v-icon
               color="green"
@@ -25,7 +25,7 @@
               mdi-arrow-up
             </v-icon>
             <span class="green--text">55%</span>&nbsp;
-            increase in today's sales
+            increase in marks from last performance
           </p>
 
           <template slot="actions">
@@ -51,8 +51,8 @@
           color="red"
           type="Bar"
         >
-          <h4 class="title font-weight-light">Email Subscription</h4>
-          <p class="category d-inline-flex font-weight-light">Last Campaign Performance</p>
+          <h4 class="title font-weight-light">Email Assignment</h4>
+          <p class="category d-inline-flex font-weight-light">Last Assignment Response</p>
 
           <template slot="actions">
             <v-icon

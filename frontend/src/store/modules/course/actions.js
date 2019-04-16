@@ -6,7 +6,7 @@ export default{
         
         httpClient.get('/api/course-offerings/').then(
             response=>{ commit('SET_COURSES', response.data)
-
+            console.log(response.data)
             }
         )
     }

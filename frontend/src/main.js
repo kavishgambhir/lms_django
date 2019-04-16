@@ -19,6 +19,13 @@ import router from '@/router'
 import store from '@/store'
 import Vuetify from 'vuetify/lib'
 
+const x = localStorage.getItem('profile')
+console.log('auth', x)
+if (x) {
+  store.dispatch('profile/setProfile', JSON.parse(x))
+  store.dispatch('auth/login', true)
+}
+
 // Sync store with router
 sync(store, router)
 
