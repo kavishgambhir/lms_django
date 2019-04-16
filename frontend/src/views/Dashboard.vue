@@ -76,8 +76,8 @@
           color="green"
           type="Line"
         >
-          <h3 class="title font-weight-light">Completed Tasks</h3>
-          <p class="category d-inline-flex font-weight-light">Last Last Campaign Performance</p>
+          <h3 class="title font-weight-light">Course Content Views</h3>
+          <p class="category d-inline-flex font-weight-light">Last Platform Performance</p>
 
           <template slot="actions">
             <v-icon
@@ -86,7 +86,7 @@
             >
               mdi-clock-outline
             </v-icon>
-            <span class="caption grey--text font-weight-light">campaign sent 26 minutes ago</span>
+            <span class="caption grey--text font-weight-light">performance measured 26 minutes ago</span>
           </template>
         </material-chart-card>
       </v-flex>
@@ -99,8 +99,8 @@
         <material-stats-card
           color="green"
           icon="mdi-store"
-          title="Revenue"
-          value="$34,245"
+          title="Enrollments"
+          value="34"
           sub-icon="mdi-calendar"
           sub-text="Last 24 Hours"
         />
@@ -114,12 +114,9 @@
         <material-stats-card
           color="orange"
           icon="mdi-content-copy"
-          title="Used Space"
-          value="49/50"
-          small-value="GB"
+          title="Quizes Created"
+          value="49"
           sub-icon="mdi-alert"
-          sub-icon-color="error"
-          sub-text="Get More Space..."
           sub-text-color="text-primary"
         />
       </v-flex>
@@ -132,10 +129,9 @@
         <material-stats-card
           color="red"
           icon="mdi-information-outline"
-          title="Fixed Issues"
-          value="75"
+          title="Instructors"
+          value="15"
           sub-icon="mdi-tag"
-          sub-text="Tracked from Github"
         />
       </v-flex>
       <v-flex
@@ -147,7 +143,7 @@
         <material-stats-card
           color="info"
           icon="mdi-twitter"
-          title="Followers"
+          title="Follow Developers"
           value="+245"
           sub-icon="mdi-update"
           sub-text="Just Updated"
@@ -159,8 +155,8 @@
       >
         <material-card
           color="orange"
-          title="Employee Stats"
-          text="New employees on 15th September, 2016"
+          title="Students Stats"
+          text="New students since 15th April, 2019"
         >
           <v-data-table
             :headers="headers"
@@ -182,9 +178,9 @@
             >
               <td>{{ index + 1 }}</td>
               <td>{{ item.name }}</td>
-              <td class="text-xs-right">{{ item.salary }}</td>
-              <td class="text-xs-right">{{ item.country }}</td>
-              <td class="text-xs-right">{{ item.city }}</td>
+              <td class="text-xs-right">{{ item.marks }}</td>
+              <td class="text-xs-right">{{ item.Code }}</td>
+              <td class="text-xs-right">{{ item.Stream }}</td>
             </template>
           </v-data-table>
         </material-card>
@@ -237,7 +233,7 @@
                     />
                   </v-list-tile-action>
                   <v-list-tile-title>
-                    Sign contract for "What are conference organized afraid of?"
+                    Added New courses?"
                   </v-list-tile-title>
                   <div class="d-flex">
                     <v-tooltip
@@ -278,7 +274,7 @@
                     />
                   </v-list-tile-action>
                   <v-list-tile-title>
-                    Lines From Great Russian Literature? Or E-mails From My Boss?
+                    New students enrolled in CS321
                   </v-list-tile-title>
                   <div class="d-flex">
                     <v-tooltip
@@ -318,7 +314,7 @@
                     />
                   </v-list-tile-action>
                   <v-list-tile-title>
-                    Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                    Quiz 3 responses are now live.
                   </v-list-tile-title>
                   <div class="d-flex">
                     <v-tooltip
@@ -450,50 +446,45 @@ export default {
         },
         {
           sortable: false,
-          text: 'Salary',
-          value: 'salary',
+          text: 'Marks',
+          value: 'Marks',
           align: 'right'
         },
         {
           sortable: false,
-          text: 'Country',
-          value: 'country',
+          text: 'Code',
+          value: 'Code',
           align: 'right'
         },
         {
           sortable: false,
-          text: 'City',
-          value: 'city',
+          text: 'Stream',
+          value: 'Stream',
           align: 'right'
         }
       ],
       items: [
         {
-          name: 'Dakota Rice',
-          country: 'Niger',
-          city: 'Oud-Tunrhout',
-          salary: '$35,738'
+          name: 'Saksham Gupta',
+          Code: 'CS321',
+          Stream: 'CSE',
+          marks: '90/100'
         },
         {
-          name: 'Minerva Hooper',
-          country: 'Curaçao',
-          city: 'Sinaai-Waas',
-          salary: '$23,738'
+          name: 'Kavish Gambhir',
+          Code: 'CS322',
+          Stream: 'CSE',
+          marks: '77/100'
         }, {
-          name: 'Sage Rodriguez',
-          country: 'Netherlands',
-          city: 'Overland Park',
-          salary: '$56,142'
+          name: 'Abhinav Suthar',
+          Code: 'CS321',
+          Stream: 'EE',
+          marks: '88/100'
         }, {
-          name: 'Philip Chanley',
-          country: 'Korea, South',
-          city: 'Gloucester',
-          salary: '$38,735'
-        }, {
-          name: 'Doris Greene',
-          country: 'Malawi',
-          city: 'Feldkirchen in Kārnten',
-          salary: '$63,542'
+          name: 'Ajat Prabha',
+          Code: 'CS899',
+          Stream: 'ME',
+          marks: '38/1000'
         }
       ],
       tabs: 0,

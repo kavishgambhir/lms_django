@@ -20,11 +20,11 @@
       {{ (new Date()).getFullYear() }}
       <a
         href="https://www.creative-tim.com/"
-        target="_blank">Creative Tim</a>, made with
+        target="_blank">SmartClass</a>, made with
       <v-icon
         color="tertiary"
         size="17">mdi-heart</v-icon>
-      for a better web
+      for a better classroom
     </span>
   </v-footer>
 </template>
@@ -34,9 +34,9 @@ export default {
   data: () => ({
     links: [
       { name: 'Home', Link: '/dashboard' },
-      { name: 'Creative Tim', Link: 'https://www.creative-tim.com' },
-      { name: 'About Us', Link: 'https://creative-tim.com/presentation' },
-      { name: 'Blog', Link: 'https://blog.creative-tim.com' }
+      { name: 'SmartClass', Link: 'https://www.github.com/lms_django' },
+      { name: 'About Us', Link: 'https://sakshamgupta.me' },
+      { name: 'Blog', Link: 'https://sakshamgupta.me/blog' }
     ]
   })
 }
