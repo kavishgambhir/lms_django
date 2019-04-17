@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
-from department.models import Department, Course, CourseOffering
+from department.models import Department, Course, CourseOffering , File
 from department.permissions import IsStudent, IsInstructor
 from account.models import StudentProfile, InstructorProfile
 
@@ -33,6 +33,11 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ('first_name', 'last_name', 'username')
 
+
+class UploadFileSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = File
+        fields = ('name','type','file','course_offering')
 
 class enrolledStrudentSerializer(serializers.HyperlinkedModelSerializer):
     department = DepartmentSerializer()
@@ -79,7 +84,15 @@ class CourseOfferingViewSet(viewsets.ModelViewSet):
             request.user.studentprofile)
         return Response(data={'message': 'enrolled'}, status=status.HTTP_200_OK)
 
+    @action(methods=['get'], detail=True)
+    def offer_course(self, request, pk=None):
+        get_object_or_404(CourseOffering, pk=pk).enrolled_students.add(
+            request.user.studentprofile)
+        return Response(data={'message': 'enrolled'}, status=status.HTTP_200_OK)
+
 
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+
+    from django import forms
