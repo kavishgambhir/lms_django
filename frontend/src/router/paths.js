@@ -69,7 +69,17 @@ export default [
     name: 'CourseList',
     view: 'CourseList',
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      requiresAuthInstructor: true
+    }
+  },
+  {
+    path: '/studentList',
+    name: 'Student Statistics',
+    view: 'studentList',
+    meta: {
+      requiresAuth: true,
+      requiresAuthInstructor: true
     }
   },
   {

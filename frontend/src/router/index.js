@@ -62,6 +62,21 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuthInstructor)) {
+    if (!store.getters['profile/isInstructor']) {
+      next({
+        path: '/home',
+        query: { next: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
 Vue.use(Meta)
 
 // Bootstrap Analytics

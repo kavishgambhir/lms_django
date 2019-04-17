@@ -99,6 +99,12 @@ export default {
         profile: 'instructor-profile'
       },
       {
+        to: '/studentList',
+        icon: 'mdi-account',
+        text: 'Student Statistics',
+        profile: 'instructor-profile'
+      },
+      {
         to: '/quiz',
         icon: 'mdi-file-question',
         text: 'Quiz'
