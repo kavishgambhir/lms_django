@@ -67,7 +67,16 @@ export default [
   {
     path: '/courses',
     name: 'CourseList',
-    view: 'CourseList'
-
+    view: 'CourseList',
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    view: 'test'
   }
+
+
 ]
