@@ -67,7 +67,26 @@ export default [
   {
     path: '/courses',
     name: 'CourseList',
-    view: 'CourseList'
-
+    view: 'CourseList',
+    meta: {
+      requiresAuth: true,
+      requiresAuthInstructor: true
+    }
+  },
+  {
+    path: '/studentList',
+    name: 'Student Statistics',
+    view: 'studentList',
+    meta: {
+      requiresAuth: true,
+      requiresAuthInstructor: true
+    }
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    view: 'test'
   }
+
+
 ]
