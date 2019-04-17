@@ -162,7 +162,7 @@ export default {
     sendRequest() {
       this.$httpClient
         .post("/api/sign-up/", this.model)
-        .then(resp => console.log(resp))
+        .then(resp => {if(resp.status == 201) window.location.replace("http://localhost:8080") })
         .catch(err => console.log(err.response));
     }
   },
