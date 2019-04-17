@@ -1,11 +1,13 @@
 from django.db import models
 from django.utils import timezone
 from account.models import StudentProfile
+from department.models import CourseOffering
 
 class Quiz(models.Model):
     name = models.CharField(max_length=256)
     start_time = models.DateTimeField()
     description = models.TextField()
+    course_offerings = models.ForeignKey(CourseOffering, on_delete=models.CASCADE)
     duration = models.PositiveIntegerField(
         default=180, help_text='Duration in minutes')
     uploaded_at = models.DateTimeField(auto_now_add=True)

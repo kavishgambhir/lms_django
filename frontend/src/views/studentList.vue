@@ -12,7 +12,10 @@
       <v-list two-line>
         <v-list-group v-for="(student, i) in studentList" :key="i" v-model="student.active" no-action>
           <template v-slot:activator>
-            <v-list-tile>
+            <v-list-tile avatar> 
+              <v-list-tile-avatar>
+                <img :src="student.avatar">
+              </v-list-tile-avatar>
               <v-list-tile-content>
                 <v-list-tile-title > {{ student.user.first_name+' '+student.user.last_name }} </v-list-tile-title>
                 <v-list-tile-sub-title>{{ student.roll_number + ' | ' + student.user.username }}</v-list-tile-sub-title>
@@ -20,16 +23,7 @@
             </v-list-tile>
           </template>
 
-          <v-list-tile v-for="(student, k) in studentList" :key="k" @click>
-            <v-list-tile-content>
-              <v-list-tile-title>{{ student.dob }}</v-list-tile-title>
-              <v-list-tile-sub-title>{{ student.roll_number + ' | ' + student.department }}</v-list-tile-sub-title>
-            </v-list-tile-content>
-
-            <v-list-tile-action>
-              <v-icon>{{ student.action }}</v-icon>
-            </v-list-tile-action>
-          </v-list-tile>
+          <span>{{ student }}</span>
         </v-list-group>
       </v-list>
     </v-flex>
@@ -41,8 +35,8 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapActions("studentList", ["setStudentList"]),
-    ...mapGetters("studentList", ["studentList"])
+    ...mapActions("studentList", ["setStudentList"], "course", ["setCourses"]),
+    ...mapGetters("studentList", ["studentList"], "course", ["courses"]),
   },
   data() {
     return {
@@ -51,10 +45,12 @@ export default {
   beforeMount() {
     // this.setStudentList();
     this.$store.dispatch("studentList/setStudentList");
+    this.$store.dispatch("course/setCourses");
   },
   methods: {
     log() {
       console.log("suthar", this.courses);
+      console.log("test", this.studentList);
     }
   }
 };

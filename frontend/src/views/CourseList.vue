@@ -10,27 +10,14 @@
       </v-toolbar>
 
       <v-list two-line>
-        <v-list-group v-for="(course, i) in courses" :key="i" v-model="course.active" no-action>
-          <template v-slot:activator>
-            <v-list-tile>
+        <template v-for="(course, i) in courses" no-action>
+            <v-list-tile :to="'/course-structure/' + course.course.code" :key="i">
               <v-list-tile-content>
                 <v-list-tile-title v-html="course.course.name"></v-list-tile-title>
                 <v-list-tile-sub-title>{{ course.course.code + ' | ' + course.instructor.user.username }}</v-list-tile-sub-title>
               </v-list-tile-content>
             </v-list-tile>
-          </template>
-
-          <v-list-tile v-for="(student, k) in course.enrolled_students" :key="k" @click>
-            <v-list-tile-content>
-              <v-list-tile-title>{{ student.user.username }}</v-list-tile-title>
-              <v-list-tile-sub-title>{{ student.roll_number + ' | ' + student.department.name }}</v-list-tile-sub-title>
-            </v-list-tile-content>
-
-            <v-list-tile-action>
-              <v-icon>{{ student.action }}</v-icon>
-            </v-list-tile-action>
-          </v-list-tile>
-        </v-list-group>
+        </template>
       </v-list>
     </v-flex>
   </v-layout>

@@ -65,6 +65,11 @@ export default [
     view: 'Upgrade'
   },
   {
+    path: '/course-structure/:id',
+    name: 'Upgrade to PRO',
+    view: 'CourseStructure'
+  },
+  {
     path: '/courses',
     name: 'CourseList',
     view: 'CourseList',
