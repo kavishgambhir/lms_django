@@ -14,20 +14,3 @@ from department.models import File
 
 # Create your views here.
 
-
-class FileUploadAPIView(APIView):
-    http_method_names = ['post','put']
-    permission_classes = (AllowAny,)
-
-    def post(self, request, format=None):
-        if 'file' not in request.data:
-            raise ParseError("Empty content")
-
-        instance = File(file=request.FILES['file'],name=request.data['name'])
-        instance.save()
-        return Response(status=status.HTTP_201_CREATED)
-
-    def delete(self, request, format= None):
-        file_instance = File.objects.get(file=request.FILES['file'])
-        file_instance.delete(save=True)
-    
