@@ -7,7 +7,6 @@ from account.models import StudentProfile, InstructorProfile
 from department.models import CourseOffering, Course
 from department.serializers import CourseSerializer
 
-
 class UserCreateSerializer(serializers.HyperlinkedModelSerializer):
     first_name = serializers.CharField(max_length=30, required=True)
     last_name = serializers.CharField(max_length=150, required=True)
