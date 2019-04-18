@@ -70,9 +70,14 @@ export default [
     view: 'CourseStructure'
   },
   {
-    path: '/attendance:id',
+    path: '/attendance/:id',
     name: 'Attendance',
-    view: 'attendance'
+    view: 'Attendance'
+  },
+  {
+    path: '/resources:id',
+    name: 'Resources',
+    view: 'Resources'
   },
   {
     path: '/courses',

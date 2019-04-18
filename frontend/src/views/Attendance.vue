@@ -1,40 +1,50 @@
 <template>
-  <v-layout row>
-    <v-flex xs12 sm10 offset-sm1>
-      <v-toolbar color="cyan" dark>
-        <v-toolbar-side-icon></v-toolbar-side-icon>
-
-        <v-toolbar-title>Your Course Offerings</v-toolbar-title>
-
-        <v-spacer></v-spacer>
-      </v-toolbar>
-
+  <v-container fluid grid-list-md>
+    <v-card>
+      <v-card-title class="subheading font-weight-bold">Students Attendance</v-card-title>
+      <v-divider></v-divider>
       <v-list two-line>
-        <template v-for="(course, i) in courses" no-action>
-            <v-list-tile :to="'/course-structure/' + course.course.code" :key="i">
-              <v-list-tile-content>
-                <v-list-tile-title v-html="course.course.name"></v-list-tile-title>
-                <v-list-tile-sub-title>{{ course.course.code + ' | ' + course.instructor.user.username }}</v-list-tile-sub-title>
-              </v-list-tile-content>
-            </v-list-tile>
+        <template v-for="(student, i) in students">
+          <v-list-tile :key="i" @click="log">
+            <v-list-tile-title>{{ student.roll_number + ' | ' + student.user.first_name + ' ' + student.user.last_name}}</v-list-tile-title>
+          </v-list-tile>
         </template>
       </v-list>
-    </v-flex>
-  </v-layout>
+    </v-card>
+  </v-container>
 </template>
+
 <script>
 import Axios from "axios";
 import { mapActions, mapGetters } from "vuex";
-
 export default {
   computed: {
-    ...mapActions("course", ["setCourses"]),
-    ...mapGetters("course", ["courses"])
+    ...mapGetters("course", ["courses"]),
+    students() {
+      const self = this;
+      const list = this.courses.filter(function(el) {
+        return el.course.code === self.$route.params.id;
+      });
+      if (list.length > 0) return list[0].enrolled_students;
+      else return [];
+    }
   },
   data() {
     return {
-      suthar: ""
+      suthar: "",
+      items: ""
     };
+  },
+  created() {
+    console.log(this.$route.params.id);
+    const self = this;
+    Axios.create()
+      .get("/api/files/")
+      .then(response => {
+        self.items = response.data;
+        console.log("saksham", self.items);
+      })
+      .catch(err => console.log(err));
   },
   beforeMount() {
     // this.setCourses();
@@ -42,7 +52,7 @@ export default {
   },
   methods: {
     log() {
-      console.log("suthar", this.courses);
+      console.log("suthar", this.students[0].enrolled_students);
     }
   }
 };
