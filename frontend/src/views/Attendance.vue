@@ -9,11 +9,9 @@
             <v-list-tile-content>
               <v-list-tile-title>{{ student.roll_number + ' | ' + student.user.first_name + ' ' + student.user.last_name}}</v-list-tile-title>
             </v-list-tile-content>
-            <v-list-action>
-              <v-flex class="text-sm-right">
-                <v-btn color="info" >View attendance</v-btn>
-              </v-flex>
-            </v-list-action>
+            <div>
+              <v-btn color="info" :to="'/attendance/' + $route.params.id + '/' + student.roll_number">View attendance</v-btn>
+            </div>
           </v-list-tile>
         </template>
       </v-list>
