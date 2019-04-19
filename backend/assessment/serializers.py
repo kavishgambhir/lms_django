@@ -8,7 +8,7 @@ class ChoiceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Choice
-        fields = ('id', 'text', 'is_correct')
+        fields = ('id', 'text')
 
 
 class QuestionSerializer(serializers.ModelSerializer):

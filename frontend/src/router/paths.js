@@ -66,8 +66,18 @@ export default [
   },
   {
     path: '/course-structure/:id',
-    name: 'Upgrade to PRO',
+    name: 'Course Structure',
     view: 'CourseStructure'
+  },
+  {
+    path: '/attendance/:id',
+    name: 'Attendance',
+    view: 'Attendance'
+  },
+  {
+    path: '/resources:id',
+    name: 'Resources',
+    view: 'Resources'
   },
   {
     path: '/courses',
