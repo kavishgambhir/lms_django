@@ -20,6 +20,7 @@ from django.conf import settings
 from rest_framework import routers, urls
 from assessment.serializers import QuizViewSet
 from department.serializers import DepartmentViewSet , CourseOfferingViewSet, CourseViewSet, FileVIewSet
+from department.views import FileList 
 from account.serializers import StudentProfileViewSet, InstructorProfileViewSet
 from account.views import ProfileCreateAPIView, LoginAPIView, LogoutAPIView, AuthenticationCheckAPIView
 from django.contrib.auth.views import LoginView
@@ -41,8 +42,12 @@ urlpatterns = [
     path('api/sign-up/', ProfileCreateAPIView.as_view(), name='sign-up'),
     path('api/sign-in/', LoginAPIView.as_view(), name='sign-in'),
     path('api/sign-out/', LogoutAPIView.as_view(), name='sign-out'),
-    path('api/auth-check/', AuthenticationCheckAPIView.as_view(), name='auth-check')
+    path('api/auth-check/', AuthenticationCheckAPIView.as_view(), name='auth-check'),
+    path('api/file-by/', FileList.as_view())
 ]
+
+# url('^api/file/by/(?P<course_offering>.+)/$',FileList.as_view())
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

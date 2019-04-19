@@ -2,9 +2,10 @@ from rest_framework import serializers, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import AllowAny
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
-from department.models import Department, Course, CourseOffering, File
+from department.models import Department, Course, CourseOffering, FileModel
 from department.permissions import IsStudent, IsInstructor
 from account.models import StudentProfile, InstructorProfile
 
@@ -36,8 +37,8 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 class FileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = File
-        fields = ('name', 'type', 'file', 'course_offering')
+        model = FileModel
+        fields = ('name', 'file_type', 'file_data', 'course_offering')
 
 
 class enrolledStrudentSerializer(serializers.HyperlinkedModelSerializer):
@@ -69,7 +70,7 @@ class CourseOfferingSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class FileVIewSet(viewsets.ModelViewSet):
-    queryset = File.objects.all()
+    queryset = FileModel.objects.all()
     serializer_class = FileSerializer
 
 
@@ -81,7 +82,7 @@ class CourseOfferingViewSet(viewsets.ModelViewSet):
         if self.action in ['enroll']:
             self.permission_classes = (IsStudent,)
         elif self.action in ['create', 'update', 'partial_update', 'delete']:
-            self.permission_classes = (IsInstructor,)
+            self.permission_classes = (AllowAny,)
         return super().get_permissions()
 
     @action(methods=['get'], detail=True)
