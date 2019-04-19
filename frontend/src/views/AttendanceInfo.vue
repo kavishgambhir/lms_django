@@ -67,7 +67,6 @@ export default {
     const roll_number = this.$route.params.roll_number;
     const x = JSON.parse(localStorage.getItem(course_id + '-' + roll_number))
     if(x && x.length > 30) this.items = x;
-    
   },
   beforeMount() {},
   methods: {
