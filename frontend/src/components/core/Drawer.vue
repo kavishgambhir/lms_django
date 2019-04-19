@@ -105,6 +105,12 @@ export default {
         profile: 'instructor-profile'
       },
       {
+        to: '/quizes',
+        icon: 'mdi-file-question',
+        text: 'QuizList',
+        profile: 'instructor-profile'
+      },
+      {
         to: '/quiz',
         icon: 'mdi-file-question',
         text: 'Quiz'
