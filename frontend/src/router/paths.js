@@ -85,6 +85,11 @@ export default [
     view: 'QuizList'
   },
   {
+    path: '/quizes/:id',
+    name: 'Quiz',
+    view: 'Quiz'
+  },
+  {
     path: '/resources:id',
     name: 'Resources',
     view: 'Resources'

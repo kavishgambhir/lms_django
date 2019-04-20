@@ -1,8 +1,23 @@
 <template>
   <v-container>
+    <span>Quiz Name : {{ quiz.name }}</span>
+    <br>
+    <!-- <span>{{ quiz.url }}</span>
+    <br> -->
+    <span>Start Time of quiz : {{ quiz.start_time }}</span>
+    <br>
+    <span>Duration of the quiz : {{ quiz.duration }}</span>
+    <br>
+    <span>End time of the quiz : {{ quiz.end_time }}</span>
+    <br>
+    <span>Is quiz active? : {{ quiz.is_active }}</span>
+    <br>
+    <span>Description of the quiz : {{ quiz.description }}</span>
+    <br>
+
     <v-list>
-      <template v-for="(ques, i) in questions">
-        {{ ques.question }}
+      <template v-for="(ques, i) in quiz.questions">
+        {{ ques.text }}
         <v-radio-group v-model="ques.selectedChoice" :key="i+1">
           <v-radio
             v-for="(choice, n) in ques.choices"
@@ -14,64 +29,52 @@
       </template>
     </v-list>
 
-    <v-btn @click="submit">Submit</v-btn>
-
-    <p>{{ questions[0].selectedChoice || 'null' }}</p>
-    <p>{{ questions[1].selectedChoice || 'null' }}</p>
+    <v-btn @click="submit" color="info">Submit</v-btn>
   </v-container>
 </template>
 
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "Quiz",
   data() {
     return {
-      radioGroup: "",
-      questions: [
-        {
-          question: "Question 1",
-          position: "0",
-          posMarks: "4",
-          negMarks: "2",
-          choices: [
-            { id: "1", text: "Option 1" },
-            { id: "2", text: "Option 2" },
-            { id: "3", text: "Option 3" },
-            { id: "4", text: "Option 4" }
-          ]
-        },
-        {
-          question: "Question 2",
-          position: "1",
-          posMarks: "4",
-          negMarks: "2",
-          choices: [
-            { id: "1", text: "Option 1" },
-            { id: "2", text: "Option 2" },
-            { id: "3", text: "Option 3" },
-            { id: "4", text: "Option 4" }
-          ]
-        }
-      ]
+      radioGroup: ""
     };
   },
   methods: {
-      submit () {
-          this.questions.forEach(ques => {
-              console.log(ques.selectedChoice)
-          });
-      }
+    submit() {
+      var marks = 0;
+      this.quiz.questions.forEach(ques => {
+        if(ques.selectedChoice === ques.correct_choice) {
+          marks += ques.positive_marks
+        }else {
+          marks += ques.negative_marks
+        }
+      });
+      console.log(marks);
+      
+    }
   },
-  created () {
+  computed: {
+    ...mapActions("quizes", ["setQuizes"]),
+    ...mapGetters("quizes", ["quizes"]),
+    quiz() {
+      const self = this;
+      const list = this.quizes.filter(function(el) {
+        return el.name === self.$route.params.id;
+      });
+      if (list.length > 0) return list[0];
+      else return [];
+    }
+  },
+  created() {
+    console.log("suthar");
+
     const quiz_id = this.$route.params.id;
     console.log(quiz_id);
-    Axios.create()
-      .get("/api/quizes/" + quiz_id)
-      .then(response => {
-        this.questions = response.data;
-      })
-      .catch(err => console.log(err));
   }
 };
 </script>
