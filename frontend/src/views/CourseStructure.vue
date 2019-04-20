@@ -1,6 +1,6 @@
 <template>
   <v-container fluid grid-list-md>
-      <v-card>
+    <v-card>
       <v-card-title class="subheading font-weight-bold">Resources</v-card-title>
 
       <v-divider></v-divider>
@@ -8,8 +8,14 @@
       <v-list two-line>
         <template v-for="(item, i) in items">
           <v-list-tile :key="i" @click="log">
-            <v-list-tile-title>{{ item.type + ' ' + item.file }}</v-list-tile-title>
+            <v-list-tile-title>{{ item.name + ' ' + item.file_type }}</v-list-tile-title>
             <!-- <v-list-tile-sub-title>{{ student.roll_number + ' | ' + student.user.username + ' | ' + student.department.name }}</v-list-tile-sub-title> -->
+
+            <v-list-tile-action>
+              <v-btn ripple icon round color="success" :href="item.file_data" target="_blank">
+                <v-icon class="mdi mdi-arrow-expand-down"></v-icon>
+              </v-btn>
+            </v-list-tile-action>
           </v-list-tile>
         </template>
       </v-list>
@@ -42,24 +48,26 @@ export default {
       const list = this.courses.filter(function(el) {
         return el.course.code === self.$route.params.id;
       });
-      if(list.length > 0) return list[0].enrolled_students;
+      if (list.length > 0) return list[0].enrolled_students;
       else return [];
     }
   },
   data() {
     return {
       suthar: "",
-      items: ''
+      items: ""
     };
   },
   created() {
     console.log(this.$route.params.id);
-    const self=this;
-    Axios.create().get('/api/files/').then(response => {
-        self.items = response.data
-        console.log("saksham",self.items)
-    }).catch(err => console.log(err))
-    
+    const self = this;
+    Axios.create()
+      .get("/api/files/")
+      .then(response => {
+        self.items = response.data;
+        console.log("saksham", self.items);
+      })
+      .catch(err => console.log(err));
   },
   beforeMount() {
     // this.setCourses();
@@ -68,7 +76,8 @@ export default {
   methods: {
     log() {
       console.log("suthar", this.students[0].enrolled_students);
-    }
+    },
+    download(url) {}
   }
 };
 </script>
