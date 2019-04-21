@@ -18,6 +18,7 @@ class StudentProfile(models.Model):
 class InstructorProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     department = models.ForeignKey('department.Department', on_delete=models.CASCADE)
+    avatar = models.ImageField(upload_to='avatar',null=True)
     def __str__(self):
         return '{}'.format(self.name)
 
