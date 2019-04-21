@@ -12,21 +12,21 @@
       counter
       @click:append="show1 = !show1"
     ></v-text-field>
-    <v-btn @click="submit">Submit</v-btn>
-</v-form>
+    <v-btn color="blue" @click="submit">Go</v-btn>
+    <v-alert :value="true" color="error" icon="warning" outline v-if="showError">{{errorMessage}}</v-alert>
+  </v-form>
 </template>
 <script>
-import Axios from 'axios'
-import { mapActions } from 'vuex'
+import Axios from "axios";
+import { mapActions } from "vuex";
 
 export default {
   name: "SignIn",
   data: () => ({
     model: {
-      
-        email: "",
-        password: "",
-        username: ""
+      email: "",
+      password: "",
+      username: ""
     },
     response: "",
     show1: false,
@@ -44,14 +44,12 @@ export default {
       { key: "Student", value: "student" },
       { key: "Instructor", value: "instructor" }
     ],
-    checkbox: false
+    checkbox: false,
+    showError: false,
+    errorMessage: 'Invalid Credentials'
   }),
   methods: {
-    ...mapActions('profile', [
-      'setProfile'
-    ],
-    'auth',
-    ['login']),
+    ...mapActions("profile", ["setProfile"], "auth", ["login"]),
     save(date) {
       this.$refs.menu.save(date);
     },
@@ -64,28 +62,23 @@ export default {
       this.$httpClient
         .post("/api/sign-in/", this.model)
         .then(resp => {
-          this.setProfile(resp.data)
-          localStorage.setItem('profile', JSON.stringify(resp.data))
-          this.$store.dispatch('auth/login')
-          this.$router.push({name: 'Dashboard'})
-          }
-        )
-        .catch(err => console.log(err));
+          this.setProfile(resp.data);
+          localStorage.setItem("profile", JSON.stringify(resp.data));
+          this.$store.dispatch("auth/login");
+          this.$router.push({ name: "Dashboard" });
+        })
+        .catch( (err) => {console.log(err) , this.showError=true });
     }
   },
-    watch: {
-      model: {
-          handler (val) {
-            this.model.username = val.email
-          },
-          deep: true
-      }
+  watch: {
+    model: {
+      handler(val) {
+        this.model.username = val.email;
+      },
+      deep: true
+    }
   },
   mounted() {
-    this.$httpClient
-      .get("/api/departments/")
-      .then(resp => (this.departments = resp.data))
-      .catch(err => console.log(err))
   }
-}
+};
 </script>
