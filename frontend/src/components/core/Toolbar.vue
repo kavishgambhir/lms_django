@@ -111,7 +111,10 @@ export default {
     logout()
     {
       this.$store.dispatch('auth/logout')
-      this.$router.push('Dashboard')
+      this.$httpClient.get("api/sign-out/")
+        .then(resp => console.log(resp))
+        .catch(err=>console.log(err))
+      this.$router.push('Home')
 
     }
   }

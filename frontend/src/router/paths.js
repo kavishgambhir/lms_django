@@ -16,7 +16,8 @@ export default [
   {
     path: '/home',
     // Relative to /src/views
-    view: 'Home'
+    view: 'Home',
+    name: 'Home'
   },
   {
     path: '/feedback',
