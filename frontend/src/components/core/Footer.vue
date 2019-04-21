@@ -33,7 +33,6 @@
 export default {
   data: () => ({
     links: [
-      { name: 'Logout', Link: '/dashboard' },
       { name: 'SmartClass', Link: 'https://www.github.com/lms_django' },
       { name: 'About Us', Link: 'https://sakshamgupta.me' },
       { name: 'Blog', Link: 'https://sakshamgupta.me/blog' }
