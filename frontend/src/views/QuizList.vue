@@ -3,8 +3,8 @@
     <v-flex xs12 sm8 offset-sm2>
       <v-card>
         <v-list three-line>
-          <template v-for="(item, index) in items">
-            <v-list-tile :key="item.name" ripple xs12 @click="route(item.url)">
+          <template v-for="(item, index) in quizes">
+            <v-list-tile :key="'tile' + index" ripple xs12 :to="'/quizes/' + item.name">
               <v-layout row wrap>
 
                 <v-flex xs11 mb-2>
@@ -43,7 +43,7 @@
                 <span>Is Active: {{ item.is_active ? 'Yes' : 'No' }}</span>
               </v-list-tile-content> -->
             </v-list-tile>
-            <v-divider v-if="index + 1 < items.length" :key="index"></v-divider>
+            <v-divider v-if="index + 1 < quizes.length" :key="index"></v-divider>
           </template>
         </v-list>
       </v-card>
@@ -53,23 +53,27 @@
 
 <script>
 import Axios from 'axios'
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "QuizListView",
+  computed: {
+    ...mapActions("quizes", ["setQuizes"]),
+    ...mapGetters("quizes", ["quizes"])
+  },
   data() {
     return {
-      items: []
+      suthar: ""
     };
   },
-  methods :{
-    route(url){
-      window.location.href = url;
-    }
+  beforeMount() {
+    // this.setCourses();
+    this.$store.dispatch("quizes/setQuizes");
   },
-  created () {
-    Axios.create().get('/api/quizes/').then(response => {
-        this.items = response.data
-    }).catch(err => console.log(err))
+  methods: {
+    log() {
+      console.log("suthar", this.quizes);
+    }
   }
 };
 </script>

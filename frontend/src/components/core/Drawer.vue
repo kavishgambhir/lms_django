@@ -90,7 +90,7 @@ export default {
         to: '/calendar',
         icon: 'mdi-calendar',
         text: 'Calendar',
-        profile: 'student-profile'
+        profile: 'all'
       },
       {
         to: '/courses',
@@ -102,6 +102,12 @@ export default {
         to: '/studentList',
         icon: 'mdi-account',
         text: 'Student Statistics',
+        profile: 'instructor-profile'
+      },
+      {
+        to: '/QuizList',
+        icon: 'mdi-file-question',
+        text: 'QuizList',
         profile: 'instructor-profile'
       },
       {

@@ -86,42 +86,42 @@
 <script>
   export default {
     data: () => ({
-      today: '2019-01-08',
+      today: '2019-04-22',
       events: [
         {
           title: 'Vacation',
           details: 'Going to the beach!',
-          date: '2018-12-30',
+          date: '2019-04-25',
           open: false
         },
         {
           title: 'Vacation',
           details: 'Going to the beach!',
-          date: '2018-12-31',
+          date: '2019-04-12',
           open: false
         },
         {
           title: 'Vacation',
           details: 'Going to the beach!',
-          date: '2019-01-01',
+          date: '2019-04-19',
           open: false
         },
         {
           title: 'Meeting',
           details: 'Spending time on how we do not have enough time',
-          date: '2019-01-07',
+          date: '2019-04-1',
           open: false
         },
         {
           title: '30th Birthday',
           details: 'Celebrate responsibly',
-          date: '2019-01-03',
+          date: '2019-04-7',
           open: false
         },
         {
-          title: 'New Year',
+          title: 'BTP',
           details: 'Eat chocolate until you pass out',
-          date: '2019-01-01',
+          date: '2019-04-22',
           open: false
         },
         {

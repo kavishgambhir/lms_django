@@ -6,7 +6,12 @@
       <v-list two-line>
         <template v-for="(student, i) in students">
           <v-list-tile :key="i" @click="log">
-            <v-list-tile-title>{{ student.roll_number + ' | ' + student.user.first_name + ' ' + student.user.last_name}}</v-list-tile-title>
+            <v-list-tile-content>
+              <v-list-tile-title>{{ student.roll_number + ' | ' + student.user.first_name + ' ' + student.user.last_name}}</v-list-tile-title>
+            </v-list-tile-content>
+            <div>
+              <v-btn color="info" :to="'/attendance/' + $route.params.id + '/' + student.roll_number">View attendance</v-btn>
+            </div>
           </v-list-tile>
         </template>
       </v-list>

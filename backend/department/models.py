@@ -40,7 +40,6 @@ class FileModel(models.Model):
     detail = models.TextField(null=True)
     file_type = models.CharField(max_length=3,choices=FILE_TYPE,default='pdf')
     file_data = models.FileField(upload_to='uploads/',null=True)
-    owner = models.ForeignKey(User,on_delete=models.CASCADE)
     course_offering = models.ForeignKey(CourseOffering, on_delete=models.CASCADE)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 

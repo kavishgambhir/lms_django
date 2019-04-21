@@ -75,6 +75,21 @@ export default [
     view: 'Attendance'
   },
   {
+    path: '/attendance/:course_id/:roll_number',
+    name: 'AttendanceInfo',
+    view: 'AttendanceInfo'
+  },
+  {
+    path: '/QuizList',
+    name: 'QuizList',
+    view: 'QuizList'
+  },
+  {
+    path: '/quizes/:id',
+    name: 'Quiz',
+    view: 'Quiz'
+  },
+  {
     path: '/resources:id',
     name: 'Resources',
     view: 'Resources'
