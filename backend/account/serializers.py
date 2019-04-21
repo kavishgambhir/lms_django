@@ -50,8 +50,10 @@ class StudentProfileViewSet(viewsets.ModelViewSet):
     @action(methods=['get'], detail=True)
     def enrolled_courses(self, request, pk=None):
         course_ids = request.user.studentprofile.courseoffering_set.values_list('course', flat=True)
-        courses = Course.objects.filter(id__in=course_ids)
-        return Response(data=CourseSerializer(courses, many=True, context={'request': request}).data, status=status.HTTP_200_OK)
+        # courses = Course.objects.filter(code=course_ids)
+        # data=CourseSerializer(course_ids, many=True, context={'request': request}).data
+        # print(course_ids)
+        return Response(data=course_ids, status=status.HTTP_200_OK)
 
 
 class InstructorProfileViewSet(viewsets.ModelViewSet):

@@ -9,5 +9,9 @@ export default{
             console.log(response.data)
             }
         )
+    },
+    setEnrolledCourses({commit,data})
+    {
+        commit('SET_ENROLLED_COURSES',data)
     }
 }
