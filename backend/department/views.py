@@ -20,5 +20,4 @@ class FileList(generics.ListAPIView):
 
     def get_queryset(self):
         code = self.request.query_params.get('code')
-        print(code)
         return FileModel.objects.filter(course_offering__course__code=code)
