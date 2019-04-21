@@ -11,7 +11,7 @@ FILE_TYPE=(('img','Image File'),
 )
 
 class Department(models.Model):
-    name = models.CharField(max_length=256, unique=True)
+    name = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
         return self.name
@@ -21,7 +21,7 @@ class Course(models.Model):
     COURSE_REGEX = RegexValidator(
         r'^[A-Z]{2}[\d]{3}$', message='not a valid course id')
     name = models.CharField(max_length=256)
-    code = models.CharField(max_length=5, validators=[COURSE_REGEX])
+    code = models.CharField(max_length=5, validators=[COURSE_REGEX],primary_key=True)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -29,7 +29,7 @@ class Course(models.Model):
 
 
 class CourseOffering(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey('Course', on_delete=models.CASCADE,to_field='code')
     instructor = models.ForeignKey(InstructorProfile, on_delete=models.CASCADE)
     enrolled_students = models.ManyToManyField(StudentProfile)
     def __str__(self):
@@ -37,8 +37,9 @@ class CourseOffering(models.Model):
 
 class FileModel(models.Model):
     name = models.CharField(max_length=256)
+    detail = models.TextField(null=True)
     file_type = models.CharField(max_length=3,choices=FILE_TYPE,default='pdf')
-    file_data = models.FileField(upload_to='uploads/')
+    file_data = models.FileField(upload_to='uploads/',null=True)
     owner = models.ForeignKey(User,on_delete=models.CASCADE)
     course_offering = models.ForeignKey(CourseOffering, on_delete=models.CASCADE)
     uploaded_at = models.DateTimeField(auto_now_add=True)

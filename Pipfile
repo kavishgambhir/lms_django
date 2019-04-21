@@ -12,6 +12,7 @@ django = "==2.1.7"
 pillow = "*"
 django-decouple = "==2.1"
 djangorestframework = "*"
+pymysql = "*"
 
 [requires]
 python_version = "3.7"
