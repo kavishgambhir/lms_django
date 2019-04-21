@@ -30,10 +30,10 @@
                 <v-flex xs12 md6>
                   <v-text-field label="Last Name" class="purple-input" :value="user.last_name"/>
                 </v-flex>
-                <v-flex xs12 md12>
+                <v-flex xs12 md12 v-if="profile.profileType == 'Student-profile'">
                   <v-text-field label="Date of Birth" class="purple-input" :value="profile.dob"/>
                 </v-flex>
-                <v-flex xs12 md4>
+                <v-flex xs12 md4 v-if="profile.profileType == 'Student-profile'">
                   <v-text-field
                     label="Roll Number"
                     class="purple-input"
@@ -61,7 +61,7 @@
       <v-flex xs12 md4>
         <material-card class="v-card-profile">
           <v-avatar slot="offset" class="mx-auto d-block" size="130">
-            <img :src="profile.avatar">
+            <img v-bind:src="[profile.avatar==null ? './img/avatar_default.jpg' :profile.avatar]">
           </v-avatar>
           <v-card-text class="text-xs-center">
             <h6 class="category text-gray font-weight-thin mb-3">{{profileType}}</h6>
