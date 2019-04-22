@@ -30,7 +30,6 @@
 <script>
 import Axios from "axios";
 import { mapActions, mapGetters } from "vuex";
-
 export default {
   computed: {
     ...mapActions("course", ["setCourses"]),
@@ -51,4 +50,3 @@ export default {
     }
   }
 };
-</script>

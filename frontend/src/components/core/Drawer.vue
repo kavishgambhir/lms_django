@@ -95,6 +95,8 @@ export default {
         icon: 'mdi-file-question',
         text: 'Create Quiz',
         profile: 'instructor-profile'
+      },
+      {
         to: "/QuizList",
         icon: "mdi-file-question",
         text: "QuizList",
