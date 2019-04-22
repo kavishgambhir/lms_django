@@ -14,6 +14,15 @@ export default [
     }
   },
   {
+    path: '/DashStudent',
+    // Relative to /src/views
+    name: 'Dashboard',
+    view: 'DashStudent',
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     path: '/home',
     // Relative to /src/views
     view: 'Home',
@@ -94,6 +103,11 @@ export default [
     path: '/quizes/:id',
     name: 'Quiz',
     view: 'Quiz'
+  },
+  {
+    path: '/quizes/create-new',
+    name: 'Create New Quiz',
+    view: 'CreateNewQuiz'
   },
   {
     path: '/resources:id',

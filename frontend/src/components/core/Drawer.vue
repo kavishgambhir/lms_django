@@ -13,7 +13,7 @@
       <v-layout class="fill-height" tag="v-list" column>
         <v-list-tile avatar>
           <v-list-tile-avatar color="white">
-            <v-img :src="logo" height="34" contain/>
+            <v-img v-bind:src="logo" height="34" contain/>
           </v-list-tile-avatar>
           <v-list-tile-title class="title" value>Welcome {{user.first_name}}</v-list-tile-title>
         </v-list-tile>
@@ -44,6 +44,10 @@
 // Utilities
 import { mapMutations, mapState, mapGetters } from "vuex";
 export default {
+  computed:
+  {
+    ...mapGetters("profile", ["profileType", "profile", "user", "first_name"])
+  },
   data: () => ({
     logo: "./img/vuetifylogo.png",
     links: [
@@ -51,7 +55,13 @@ export default {
         to: "/dashboard",
         icon: "mdi-view-dashboard",
         text: "Dashboard",
-        profile: "all"
+        profile: "instructor-profile"
+      },
+      {
+        to: "/DashStudent",
+        icon: "mdi-view-dashboard",
+        text: "Dashboard",
+        profile: "student-profile"
       },
       {
         to: "/user-profile",
@@ -91,6 +101,12 @@ export default {
         profile: "instructor-profile"
       },
       {
+        to: "/quizes/create-new",
+        icon: "mdi-file-question",
+        text: "Create New Quiz",
+        profile: "instructor-profile"
+      },
+      {
         to: "/quiz",
         icon: "mdi-file-question",
         text: "Quiz"
@@ -98,13 +114,13 @@ export default {
       {
         to: "/feedback",
         icon: "mdi-message-alert",
-        text: "Feedback"
+        text: "Feedback",
+        profile: "student-profile"
       },
       {
         to: "/maps",
         icon: "mdi-map-marker",
         text: "Maps",
-        profile: "student-profile"
       },
       {
         to: "/notifications",

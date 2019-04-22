@@ -15,7 +15,7 @@
           >
             <div class="title font-weight-light mb-2">Notifications</div>
             <div class="category">
-              Handcrafted by us with
+              Smart ClassRoom
               <v-icon
                 size="17"
               >
@@ -31,29 +31,20 @@
               <v-flex
                 md6
                 sm12>
-                <h2 class="title font-weight-light mb-3">Notifications Style</h2>
+                <h2 class="title font-weight-light mb-3">Notifications</h2>
 
                 <material-notification
                   class="mb-3"
                   color="info"
                 >
-                  This is a plain notification
+                  CS321 Quiz to be held on Monday 31st August
                 </material-notification>
                 <material-notification
                   class="mb-3"
                   color="info"
                   dismissible
                 >
-                  This is a notification with close button.
-                </material-notification>
-                <material-notification
-                  class="mb-3"
-                  color="info"
-                  dismissible
-                  icon="mdi-bell-plus"
-                >
-
-                  This is a notification with close button and icon.
+                  CS221 Quiz to be held on Monday 25th August
                 </material-notification>
                 <material-notification
                   class="mb-3"
@@ -62,7 +53,16 @@
                   icon="mdi-bell-plus"
                 >
 
-                  This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.
+                  Janmashtami Holiday on 26th.
+                </material-notification>
+                <material-notification
+                  class="mb-3"
+                  color="info"
+                  dismissible
+                  icon="mdi-bell-plus"
+                >
+
+                  MahaShivratri Holiday on 5th
                 </material-notification>
               </v-flex>
 
@@ -71,28 +71,13 @@
                 sm12>
                 <h2 class="title font-weight-light">Notifcation States</h2>
 
-                <material-notification
-                  class="mb-3"
-                  color="info"
-                  dismissible
-                >
-                  <strong>INFO</strong> - This is a regular notification made with `color="info"`
-                </material-notification>
-
-                <material-notification
-                  class="mb-3"
-                  color="success"
-                  dismissible
-                >
-                  <strong>SUCCESS</strong> - This is a regular notification made with `color="success"`
-                </material-notification>
 
                 <material-notification
                   class="mb-3"
                   color="warning"
                   dismissible
                 >
-                  <strong>WARNING</strong> - This is a regular notification made with `color="warning"`
+                  <strong>WARNING</strong> - You have low attendance in Course CS321`
                 </material-notification>
 
                 <material-notification
@@ -100,106 +85,11 @@
                   color="error"
                   dismissible
                 >
-                  <strong>DANGER</strong> - This is a regular notification made with `color="error"`
-                </material-notification>
-
-                <material-notification
-                  class="mb-3"
-                  color="purple"
-                  dismissible
-                >
-                  <strong>PRIMARY</strong> - This is a regular notification made with `color="purple"`
+                  <strong>DANGER</strong> - Last Quiz Performance was below the class average`
                 </material-notification>
               </v-flex>
             </v-layout>
-            <div class="text-xs-center">
-              <h2 class="title font-weight-light mb-2">Notification Places</h2>
-              <span class=" subheading font-weight-light grey--text">Click to view notifications</span>
-            </div>
-
-            <v-container grid-list-lg>
-              <v-layout
-                justify-center
-                row
-                wrap>
-                <v-flex
-                  xs12
-                  sm4>
-                  <v-btn
-                    block
-                    color="success"
-                    @click="snack('top', 'left')"
-                  >
-                    Top Left
-                  </v-btn>
-                </v-flex>
-                <v-flex
-                  xs12
-                  sm4>
-                  <v-btn
-                    block
-                    color="success"
-                    @click="snack('top')"
-                  >
-                    Top Center
-                  </v-btn>
-                </v-flex>
-              </v-layout>
-              <v-layout
-                justify-center
-                row
-                wrap>
-                <v-flex
-                  xs12
-                  sm4>
-                  <v-btn
-                    block
-                    color="success"
-                    @click="snack('top', 'right')"
-                  >
-                    Top Right
-                  </v-btn>
-                </v-flex>
-                <v-flex
-                  xs12
-                  sm4>
-                  <v-btn
-                    block
-                    color="success"
-                    @click="snack('bottom', 'left')"
-                  >
-                    Bottom Left
-                  </v-btn>
-                </v-flex>
-              </v-layout>
-              <v-layout
-                justify-center
-                row
-                wrap>
-                <v-flex
-                  xs12
-                  sm4>
-                  <v-btn
-                    block
-                    color="success"
-                    @click="snack('bottom')"
-                  >
-                    Bottom Center
-                  </v-btn>
-                </v-flex>
-                <v-flex
-                  xs12
-                  sm4>
-                  <v-btn
-                    block
-                    color="success"
-                    @click="snack('bottom', 'right')"
-                  >
-                    Bottom Right
-                  </v-btn>
-                </v-flex>
-              </v-layout>
-            </v-container>
+            
 
             <v-snackbar
               :color="color"
@@ -216,7 +106,7 @@
               >
                 mdi-bell-plus
               </v-icon>
-              <div>Welcome to <b>Vue Material Dashboard</b> - a beautiful freebie for every web developer.</div>
+              <div>Welcome to <b>ClassRoom Dashboard</b> - a beautiful dashboard for every Student.</div>
               <v-icon
                 size="16"
                 @click="snackbar = false"

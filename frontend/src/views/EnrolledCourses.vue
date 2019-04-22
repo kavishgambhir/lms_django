@@ -1,36 +1,29 @@
 <template>
   <v-layout row>
-    <v-flex xs12 sm6 offset-xs1>
-   <v-card>
-      <v-card-title class="subheading font-weight-bold">Your Courses</v-card-title>
+    <v-flex xs12 sm10 offset-sm1>
+      <v-toolbar color="cyan" dark>
+        <v-toolbar-side-icon></v-toolbar-side-icon>
 
-      <v-divider></v-divider>
+        <v-toolbar-title>Courses Being Offerings</v-toolbar-title>
 
-      <v-list two-line>
-        <template v-for="(student, i) in students">
-          <v-list-tile :key="i" @click="log">
-            <v-list-tile-title>{{ student.user.first_name + ' ' + student.user.last_name }}</v-list-tile-title>
-            <v-list-tile-sub-title>{{ student.roll_number + ' | ' + student.user.username + ' | ' + student.department.name }}</v-list-tile-sub-title>
+        <v-spacer></v-spacer>
+      </v-toolbar>
+
+      <v-list three-line>
+        <template v-for="(course, i) in courses" no-action>
+          <v-list-tile :to="'/course-structure/' + course.course.code" :key="i">
+            <v-list-tile-content>
+              <v-list-tile-title v-html="course.course.name"></v-list-tile-title>
+              <v-list-tile-sub-title>{{ course.course.code + ' | ' + course.instructor.user.username }}</v-list-tile-sub-title>
+            </v-list-tile-content>
+            <v-list-action>
+              <v-flex class="text-sm-right">
+                <v-btn color="info" :key="i" @click='pushFeedback' > Request Enrollment </v-btn>
+              </v-flex>
+            </v-list-action>
           </v-list-tile>
         </template>
       </v-list>
-    </v-card>
-    </v-flex>
-    <v-flex xs12 sm2 offset-xs1>
-   <v-card>
-      <v-card-title class="subheading font-weight-bold">More Courses</v-card-title>
-
-      <v-divider></v-divider>
-
-      <v-list two-line>
-        <template v-for="(student, i) in students">
-          <v-list-tile :key="i" @click="log">
-            <v-list-tile-title>{{ student.user.first_name + ' ' + student.user.last_name }}</v-list-tile-title>
-            <v-list-tile-sub-title>{{ student.roll_number + ' | ' + student.user.username + ' | ' + student.department.name }}</v-list-tile-sub-title>
-          </v-list-tile>
-        </template>
-      </v-list>
-    </v-card>
     </v-flex>
   </v-layout>
 </template>
@@ -41,8 +34,7 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   computed: {
     ...mapActions("course", ["setCourses"]),
-    ...mapGetters("course", ["courses"]),
-    ...mapGetters("profile", ["profile"])
+    ...mapGetters("course", ["courses"])
   },
   data() {
     return {
@@ -51,11 +43,14 @@ export default {
   },
   beforeMount() {
     // this.setCourses();
-    this.$httpClient.get('/'+this.profile.url.replace (/^[a-z]{4,5}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '$1')+'enrolled_courses/')
-    .then(resp => {console.log("courses",resp), this.$store.dispatch("course/setEnrolledCourses",resp.data);})
-    .catch(err=>{})
+    this.$store.dispatch("course/setCourses");
   },
   methods: {
+      pushFeedback()
+      {
+          console.log("fgh")
+          this.$router.push('Feedback')
+      },
     log() {
       console.log("suthar", this.courses);
     }

@@ -30,6 +30,8 @@
     </v-list>
 
     <v-btn @click="submit" color="info">Submit</v-btn>
+    <br>
+    <span v-if="marks">Marks Obtained: {{ marks }}</span>
   </v-container>
 </template>
 
@@ -41,7 +43,8 @@ export default {
   name: "Quiz",
   data() {
     return {
-      radioGroup: ""
+      radioGroup: "",
+      marks: false
     };
   },
   methods: {
@@ -55,6 +58,7 @@ export default {
         }
       });
       console.log(marks);
+      this.marks = marks;
       
     }
   },

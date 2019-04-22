@@ -66,11 +66,9 @@ import { mapMutations } from "vuex";
 export default {
   data: () => ({
     notifications: [
-      "Mike, John responded to your email",
-      "You have 5 new tasks",
-      "You're now a friend with Andrew",
-      "Another Notification",
-      "Another One"
+      "Janmashtami Holiday on 26th",
+      "MahaShivratri Holiday on 5th",
+      "You have low attendance in Course CS321",
     ],
     title: null,
     responsive: false,
