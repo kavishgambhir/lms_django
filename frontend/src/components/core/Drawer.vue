@@ -108,6 +108,12 @@ export default {
         to: '/QuizList',
         icon: 'mdi-file-question',
         text: 'QuizList',
+        profile: 'student-profile'
+      },
+      {
+        to: '/CreateQuiz',
+        icon: 'mdi-file-question',
+        text: 'Create Quiz',
         profile: 'instructor-profile'
       },
       {
