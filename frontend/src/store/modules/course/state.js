@@ -1,3 +1,4 @@
 export default {
-    courses: []
+    courses: [],
+    current_enrolled_courses: []
 }

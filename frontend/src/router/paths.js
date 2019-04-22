@@ -20,6 +20,11 @@ export default [
     name: 'Home'
   },
   {
+    path: '/courses_enrolled',
+    view: 'EnrolledCourses',
+    name: 'Your Courses'
+  },
+  {
     path: '/feedback',
     view: 'Feedback',
     name: 'Feedback',
