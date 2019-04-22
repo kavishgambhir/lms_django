@@ -15,7 +15,7 @@
     <br>
     <span>Is quiz active? : {{ quiz.is_active }}</span>
     <br>
-    <span>Description of the quiz : {{ quiz.description }}</span>
+    <span>Description of the quiz : {{ quiz.description }} </span>
     <br>
 
     <v-list>
