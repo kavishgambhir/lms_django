@@ -9,6 +9,8 @@
         <v-spacer></v-spacer>
       </v-toolbar>
 
+      <!-- <v-btn @click="log">Click</v-btn> -->
+
       <v-list three-line>
         <template v-for="(course, i) in courses" no-action>
           <v-list-tile :to="'/course-structure/' + course.course.code" :key="i">
