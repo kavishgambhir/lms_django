@@ -100,6 +100,11 @@ export default [
     view: 'QuizList'
   },
   {
+    path: '/CreateQuiz',
+    name: 'CreateQuiz',
+    view: 'CreateQuiz'
+  },
+  {
     path: '/quizes/:id',
     name: 'Quiz',
     view: 'Quiz'

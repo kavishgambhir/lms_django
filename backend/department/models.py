@@ -31,8 +31,7 @@ class Course(models.Model):
 
 
 class CourseOffering(models.Model):
-    course = models.ForeignKey(
-        'Course', on_delete=models.CASCADE, to_field='code')
+    course = models.ForeignKey('Course', on_delete=models.CASCADE, to_field='code')
     instructor = models.ForeignKey(InstructorProfile, on_delete=models.CASCADE)
     enrolled_students = models.ManyToManyField(StudentProfile)
 

@@ -9,6 +9,8 @@
         <v-spacer></v-spacer>
       </v-toolbar>
 
+      <!-- <v-btn @click="log">Click</v-btn> -->
+
       <v-list three-line>
         <template v-for="(course, i) in courses" no-action>
           <v-list-tile :to="'/course-structure/' + course.course.code" :key="i">
@@ -30,7 +32,6 @@
 <script>
 import Axios from "axios";
 import { mapActions, mapGetters } from "vuex";
-
 export default {
   computed: {
     ...mapActions("course", ["setCourses"]),
@@ -51,4 +52,3 @@ export default {
     }
   }
 };
-</script>
