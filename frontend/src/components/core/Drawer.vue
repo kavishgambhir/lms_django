@@ -113,12 +113,6 @@ export default {
         profile: "instructor-profile"
       },
       {
-        to: "/quizes/create-new",
-        icon: "mdi-file-question",
-        text: "Create New Quiz",
-        profile: "instructor-profile"
-      },
-      {
         to: "/quiz",
         icon: "mdi-file-question",
         text: "Quiz"

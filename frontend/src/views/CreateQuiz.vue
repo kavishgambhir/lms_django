@@ -52,18 +52,36 @@
         <v-text-field v-model="quiz.description" label="Description"></v-text-field>
       </v-flex>
 
-      <v-flex sm6 class="pa-2">
+      <v-flex sm12 class="pa-2">
         <v-text-field v-model="question.text" label="Enter Question"></v-text-field>
       </v-flex>
 
-      <v-flex sm6 class="pa-2">
-        <v-text-field v-model="queston.choice_ii" label="New Choice"></v-text-field>
+      <v-flex sm3 class="pa-2">
+        <v-text-field v-model="question.choice_ii" label="New Choice"></v-text-field>
       </v-flex>
-      <v-flex sm6 class="pa-2">
-        <v-btn @click="addChoice">Add New Choice</v-btn>
+      <v-flex sm3 class="pa-2">
+        <v-text-field v-model="question.choice_ij" label="ID"></v-text-field>
+      </v-flex>
+      <v-flex sm3 class="pa-2">
+        <v-btn @click="addChoice" color="info">Add New Choice</v-btn>
+      </v-flex>
+      <v-flex sm3 class="pa-2" offset-sm1>
+        <v-text-field v-model="question.correct_choice" label="Correct Choice"></v-text-field>
+      </v-flex>
+      <v-flex sm3 class="pa-2">
+        <v-text-field v-model="question.positive_marks" label="Positive Marks"></v-text-field>
+      </v-flex>
+      <v-flex sm3 class="pa-2">
+        <v-text-field v-model="question.negative_marks" label="Negative Marks"></v-text-field>
       </v-flex>
 
-      <v-radio-group :key="i+1">
+      <v-flex sm12 class="pa-2 text-xs-right">
+        <v-btn @click="addQuestion" color="success">Add New Question</v-btn>
+      </v-flex>
+
+      <span>{{ question.text }}</span>
+
+      <v-radio-group>
         <v-radio
           v-for="(choice, n) in question.choices"
           :key="n"
@@ -71,26 +89,25 @@
           :value="n+1"
         ></v-radio>
       </v-radio-group>
-      
     </v-layout>
 
     <!-- <div v-if="isSending" class="loading">Sendig...</div> -->
 
-    <form class="form" @submit="onSubmit">
-      <button class="button">Create</button>
-    </form>
+    <v-btn color="success" @click="createQuiz">Create Quiz</v-btn>
   </div>
 </template>
 
 
 <script>
+import Axios from "axios";
+import { httpClient } from "../plugins/httpClient";
 export default {
   data: () => ({
+    question: {
+      choices: []
+    },
     quiz: {
-      question: {},
-      quiz: {},
-      email: "",
-      message: ""
+      questions: []
     },
 
     isSending: false
@@ -102,7 +119,32 @@ export default {
       }
     },
     addChoice() {
-      this.question.choices.push(this.question.choice_ii);
+      const self = this;
+      this.question.choices.push({ text: self.question.choice_ii, id: self.question.choice_ij });
+    },
+    addQuestion() {
+      const self = this;
+      this.quiz.questions.push(self.question);
+    },
+    createQuiz() {
+      const self = this;
+      //   httpClient
+      //     .post("http://localhost:8000/api/quizes/", self.quiz)
+      //     .then(response => {
+      //       console.log(response.data);
+      //     });
+      this.$httpClient
+        .post("/api/quizes/", self.quiz)
+        .then(resp => {
+          if (resp.status == 201)
+            window.location.replace("http://localhost:8080");
+          console.log(resp);
+        })
+        .catch(err => console.log(err.response));
+      //   const request = Axios.post(
+      //     "http://localhost:8000/api/quizes/",
+      //     self.quiz
+      //   );
     },
 
     /**
